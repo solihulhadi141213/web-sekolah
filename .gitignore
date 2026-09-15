@@ -1,5 +1,31 @@
-# Object file
-*.o
+# Konfigurasi rahasia
+.env
+.env.*
+!.env.example
 
-# Ada Library Information
-*.ali
+# Dependency
+/vendor/
+/node_modules/
+
+# Log
+*.log
+/logs/
+
+# File sementara dan cache
+/tmp/
+/temp/
+/.cache/
+
+# Konfigurasi editor
+/.idea/
+/.vscode/
+*.swp
+*.swo
+
+# File sistem operasi
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Konfigurasi koneksi database lokal
+# /_Config/Connection.php

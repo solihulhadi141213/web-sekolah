@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "jquery": "^4.0.0",
+    "mdb-ui-kit": "^9.3.0",
+    "swiper": "^14.2.0"
+  }
+}
