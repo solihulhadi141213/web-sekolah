@@ -11,6 +11,7 @@ Konten dapat diedit langsung dari file proyek. Tidak memerlukan database, backen
 ## Tangkapan layar
 
 [![Tangkapan layar website MI Plus Annur Kuningan](assets/img/Screenshot.png)](assets/img/Screenshot.png)
+[![Tangkapan layar website MI Plus Annur Kuningan](assets/img/Mobile.png)](assets/img/Mobile.png)
 
 *Klik gambar untuk melihat tangkapan layar dalam ukuran penuh.*
 

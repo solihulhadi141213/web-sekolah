@@ -36,6 +36,19 @@
   // Animasi hanya pada elemen anak agar bagian panjang tidak tersembunyi seluruhnya.
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    const updateBackToTop = function () {
+      backToTop.classList.toggle('is-visible', window.scrollY > 300);
+    };
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    updateBackToTop();
+    backToTop.addEventListener('click', function () {
+      document.querySelector('.navbar-brand')?.focus({ preventScroll: true });
+      window.scrollTo({ top: 0, behavior: motionPreference.matches ? 'instant' : 'smooth' });
+    });
+  }
+
   // Hitung statistik dari nol saat blok statistik pertama kali terlihat.
   const heroStats = document.querySelector('.hero-stats');
   const statValues = heroStats ? Array.from(heroStats.querySelectorAll('strong')).map(function (element) {
@@ -238,13 +251,69 @@
   // Kartu guru dapat digeser; kisi CSS tetap tersedia jika Swiper gagal dimuat.
   if (window.Swiper && document.querySelector('.teacherSwiper')) {
     new Swiper('.teacherSwiper', {
-      slidesPerView: 1,
-      spaceBetween: 20,
+      slidesPerView: 2,
+      spaceBetween: 12,
       pagination: { el: '.teacherSwiper .swiper-pagination', clickable: true },
       a11y: { paginationBulletMessage: 'Buka kelompok guru {{index}}' },
-      breakpoints: { 640: { slidesPerView: 2 }, 992: { slidesPerView: 3 }, 1200: { slidesPerView: 4 } }
+      breakpoints: { 768: { slidesPerView: 2, spaceBetween: 20 }, 992: { slidesPerView: 3, spaceBetween: 20 }, 1200: { slidesPerView: 4, spaceBetween: 20 } }
     });
   }
+
+  // Popover tersedia hanya ketika teks mobile benar-benar terpotong.
+  function initClippedPopovers(gallerySelector, fieldSelector) {
+    const gallery = document.querySelector(gallerySelector);
+    if (!gallery || !window.bootstrap?.Popover) return;
+    const mobileLayout = window.matchMedia('(max-width: 767.98px)');
+    const fields = gallery.querySelectorAll(fieldSelector);
+    const popovers = new Map();
+    const closePopovers = function () {
+      popovers.forEach(function (popover) { popover.hide(); });
+    };
+    const updatePopovers = function () {
+      fields.forEach(function (field) {
+        const clipped = mobileLayout.matches && (field.scrollWidth > field.clientWidth || field.scrollHeight > field.clientHeight + 1);
+        if (clipped && !popovers.has(field)) {
+          field.setAttribute('tabindex', '0');
+          popovers.set(field, new bootstrap.Popover(field, {
+            content: function () { return field.textContent.trim(); },
+            trigger: 'click',
+            placement: 'top',
+            container: 'body',
+            customClass: 'clipped-text-popover',
+            animation: false
+          }));
+        } else if (!clipped && popovers.has(field)) {
+          popovers.get(field).dispose();
+          popovers.delete(field);
+          field.removeAttribute('tabindex');
+        }
+      });
+    };
+    fields.forEach(function (field) {
+      field.addEventListener('show.bs.popover', closePopovers);
+      field.addEventListener('blur', closePopovers);
+      field.addEventListener('keydown', function (event) {
+        if ((event.key === 'Enter' || event.key === ' ') && popovers.has(field)) {
+          event.preventDefault();
+          popovers.get(field).toggle();
+        }
+      });
+    });
+    document.addEventListener('pointerdown', function (event) {
+      if (!Array.from(fields).some(function (field) { return field.contains(event.target); }) && !event.target.closest('.clipped-text-popover')) closePopovers();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closePopovers();
+    });
+    gallery.swiper?.on('slideChange', closePopovers);
+    window.addEventListener('resize', closePopovers);
+    const resizeObserver = new ResizeObserver(updatePopovers);
+    fields.forEach(function (field) { resizeObserver.observe(field); });
+    document.fonts.ready.then(updatePopovers);
+    updatePopovers();
+  }
+
+  initClippedPopovers('.teacherSwiper', '.teacher-body h3, .teacher-body p, .teacher-body span');
 
   // Galeri menampilkan beberapa foto per layar dan tetap dapat digeser.
   if (window.Swiper && document.querySelector('.gallerySwiper')) {
@@ -268,6 +337,8 @@
     });
   }
 
+  initClippedPopovers('.testimonialSwiper', '.testimonial-body h3, .testimonial-body p');
+
   // Fasilitas menampilkan beberapa card per layar dan dapat digeser.
   if (window.Swiper && document.querySelector('.facilitySwiper')) {
     new Swiper('.facilitySwiper', {
@@ -278,6 +349,8 @@
       breakpoints: { 576: { slidesPerView: 3 }, 1200: { slidesPerView: 4 } }
     });
   }
+
+  initClippedPopovers('.facilitySwiper', '.facility-body h3, .facility-body p');
 
   // Berita menampilkan beberapa card per layar dan dapat digeser.
   if (window.Swiper && document.querySelector('.newsSwiper')) {
@@ -349,6 +422,7 @@
       img.setAttribute('aria-label', 'Perbesar gambar: ' + img.alt);
       img.setAttribute('aria-haspopup', 'dialog');
       const open = function () {
+        if (img.closest('.teacher-card')) img.classList.add('is-color');
         trigger = img;
         preview.src = img.dataset.fullSrc || img.currentSrc || img.src;
         preview.alt = img.alt;
