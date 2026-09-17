@@ -8,22 +8,55 @@ Konten dapat diedit langsung dari file proyek. Tidak memerlukan database, backen
 
 [Lihat tampilan](#tangkapan-layar) · [Mulai menjalankan](#menjalankan-proyek) · [Kustomisasi](#kustomisasi) · [Panduan SEO](SEO.md)
 
-## Tangkapan layar
+## Tampilan Web
 
-[![Tangkapan layar website MI Plus Annur Kuningan](assets/img/Screenshot.png)](assets/img/Screenshot.png)
-[![Tangkapan layar website MI Plus Annur Kuningan](assets/img/Mobile.png)](assets/img/Mobile.png)
+[![Tangkapan layar website MI Plus Annur Kuningan](assets/img/Mobile.jpeg)](assets/img/Mobile.jpeg)
 
-*Klik gambar untuk melihat tangkapan layar dalam ukuran penuh.*
+*Klik gambar untuk melihat dalam ukuran penuh.*
 
 ## Fitur unggulan
 
-- **Hero interaktif:** foto bergantian, animasi teks, dua kolom seimbang, dan ukuran subtitle yang menyesuaikan ruang tersedia.
-- **Profil sekolah yang rapi:** kartu Sejarah, Visi, Misi, dan Akreditasi dengan aksen pastel serta teks yang mudah dipindai.
-- **Slider responsif:** daftar guru, testimonial, fasilitas, berita, foto, dan video menggunakan Swiper.
-- **Galeri foto dan video:** foto dapat diperbesar; kartu YouTube memiliki tombol play dan pemutar popup.
-- **Informasi penerimaan murid:** alur pendaftaran dan FAQ tersedia dalam satu bagian.
-- **Kontak lengkap:** alamat, telepon, jam layanan, Google Maps, dan akun media sosial sekolah.
-- **Dasar SEO tersedia:** metadata, judul utama permanen, data terstruktur `School`, serta konten dan tautan dalam HTML.
+### Header Interaktif, Statistik & Selayang Pandang
+
+Navigasi memudahkan pengunjung berpindah antarbagian, sementara foto dan teks pada hero memperkenalkan suasana sekolah. Statistik merangkum jumlah alumni, siswa, guru, dan prestasi, dilengkapi sambutan kepala sekolah untuk mengenalkan arah pendidikan MI Plus Annur.
+
+[![Header, statistik sekolah, dan sambutan kepala sekolah](assets/img/Screenshot-Header.png)](assets/img/Screenshot-Header.png)
+
+### Profil Sekolah & Guru
+
+Kartu profil menyajikan sejarah, visi, misi, dan akreditasi dengan ikon serta warna pastel. Daftar guru ditampilkan dalam slider responsif yang memuat foto, nama, jabatan, dan bidang pengajaran. Foto hitam putih berubah menjadi warna asli saat diarahkan kursor atau diklik.
+
+[![Kartu profil sekolah dan slider guru serta tenaga pendidikan](assets/img/Screenshot-Statistik-Guru.png)](assets/img/Screenshot-Statistik-Guru.png)
+
+### Testimoni & Kesiswaan
+
+Testimoni menampilkan pengalaman keluarga siswa dalam kartu yang dapat digeser. Bagian Kesiswaan merangkum organisasi siswa, ekstrakurikuler, dan prestasi melalui daftar yang dapat dibuka untuk membaca keterangannya, dengan gradasi lembut yang membedakan setiap kategori.
+
+[![Slider testimoni dan kartu organisasi siswa, ekstrakurikuler, serta prestasi](assets/img/Screenshot-Testimoni-Kesiswaan.png)](assets/img/Screenshot-Testimoni-Kesiswaan.png)
+
+### Fasilitas, Berita & Galeri Foto
+
+Kartu fasilitas memperkenalkan sarana belajar melalui foto dan deskripsi singkat. Berita dan pengumuman menyediakan tautan Baca Selengkapnya menuju halaman contoh artikel. Galeri foto melengkapi dokumentasi kegiatan dengan gambar yang dapat digeser dan diperbesar dalam popup.
+
+[![Fasilitas sekolah, berita dan pengumuman, serta galeri foto kegiatan](assets/img/Screenshot-Fasilitas-Berita-Galeri.png)](assets/img/Screenshot-Fasilitas-Berita-Galeri.png)
+
+### Penerimaan Murid Baru & FAQ
+
+Informasi penerimaan murid disusun dalam bagian persyaratan, jadwal, alur, dan biaya agar mudah dipahami orang tua. FAQ menyediakan jawaban atas pertanyaan umum dengan daftar buka-tutup yang menyatu dengan kartu utama.
+
+[![Informasi penerimaan murid baru dan daftar pertanyaan umum](assets/img/Screenshot-Penerimaan-Murid-Baru.png)](assets/img/Screenshot-Penerimaan-Murid-Baru.png)
+
+### Galeri Video & Kanal YouTube
+
+Dokumentasi video ditampilkan dalam slider berisi thumbnail, judul, dan tombol putar. Pengunjung dapat menonton melalui popup atau membuka kanal YouTube sekolah untuk melihat cerita dan kegiatan lainnya.
+
+[![Galeri video kegiatan dengan tombol putar dan tautan kanal YouTube sekolah](assets/img/Screenshot-Galeri-Vidio.png)](assets/img/Screenshot-Galeri-Vidio.png)
+
+### Kontak, Peta Lokasi & Footer
+
+Bagian kontak memuat alamat, telepon, email, jam layanan, dan tautan media sosial sekolah. Peta serta tombol petunjuk arah membantu pengunjung menemukan lokasi, sementara footer merangkum identitas sekolah, ketentuan penggunaan, privasi, dan cookie dengan gradasi merah yang senada dengan header.
+
+[![Informasi kontak, peta lokasi sekolah, dan footer](assets/img/Screenshot-Kontak-Footer.png)](assets/img/Screenshot-Kontak-Footer.png)
 
 ## Isi halaman
 
