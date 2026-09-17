@@ -29,3 +29,5 @@ Desktop.ini
 
 # Konfigurasi koneksi database lokal
 # /_Config/Connection.php
+# Parameter koneksi dan kredensial lokal (jangan dipublikasikan)
+/_Config/config.php

@@ -1,0 +1,106 @@
+name: Pemeriksaan PHP dan Database
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pengujian:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Database sementara khusus CI, mengikuti versi pada dump SQL.
+    services:
+      mysql:
+        image: mysql:9.1
+        env:
+          MYSQL_ROOT_PASSWORD: ci_root_password
+          MYSQL_DATABASE: web_sekolah
+          MYSQL_USER: ci_user
+          MYSQL_PASSWORD: ci_test_password
+        ports:
+          - 3307:3306
+        options: >-
+          --health-cmd="mysql --protocol=TCP -h 127.0.0.1 -uci_user -pci_test_password -D web_sekolah -e 'SELECT 1'"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=12
+          --health-start-period=30s
+
+    # Harus dibaca oleh config/koneksi PHP menggunakan getenv().
+    # Nilai berikut hanya untuk database CI yang akan dibuang.
+    env:
+      APP_ENV: testing
+      DB_HOST: 127.0.0.1
+      DB_PORT: '3307'
+      DB_NAME: web_sekolah
+      DB_USER: ci_user
+      DB_PASSWORD: ci_test_password
+
+    steps:
+      - name: Ambil kode dari repositori
+        uses: actions/checkout@v6
+
+      - name: Siapkan PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mysqli, pdo_mysql
+          coverage: none
+
+      - name: Pastikan file yang diperlukan tersedia
+        run: |
+          test -f DB/web_sekolah.sql
+          test -f _Test/database_check.php
+          test -f _Test/api_credential_check.php
+
+      - name: Periksa sintaks skrip pengujian
+        run: |
+          php -l _Test/database_check.php
+          php -l _Test/api_credential_check.php
+
+      - name: Impor struktur database ke MySQL CI
+        env:
+          MYSQL_CONTAINER_ID: ${{ job.services.mysql.id }}
+        run: |
+          docker exec -i -e MYSQL_PWD="$DB_PASSWORD" "$MYSQL_CONTAINER_ID" \
+            mysql --protocol=TCP -h 127.0.0.1 -u "$DB_USER" "$DB_NAME" \
+            < DB/web_sekolah.sql
+
+      # Dump yang diberikan hanya berisi struktur tanpa INSERT.
+      # Record ini fixture CI, bukan kredensial API produksi.
+      - name: Siapkan record kredensial API contoh
+        run: |
+          php <<'PHP'
+          <?php
+          mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+          $db = new mysqli(
+              getenv('DB_HOST'),
+              getenv('DB_USER'),
+              getenv('DB_PASSWORD'),
+              getenv('DB_NAME'),
+              (int) getenv('DB_PORT')
+          );
+          $db->set_charset('utf8mb4');
+          $appName = 'Aplikasi Pengujian CI';
+          $apiKey = 'ci-only-api-key';
+          $apiSecret = password_hash('ci-only-api-secret', PASSWORD_DEFAULT);
+          $permissions = json_encode(['read_article']);
+          $stmt = $db->prepare(
+              'INSERT INTO api_credentials
+               (app_name, api_key, api_secret, permissions, is_active)
+               VALUES (?, ?, ?, ?, 1)'
+          );
+          $stmt->bind_param('ssss', $appName, $apiKey, $apiSecret, $permissions);
+          $stmt->execute();
+          echo "Record API contoh berhasil dibuat.\n";
+          PHP
+
+      - name: Periksa koneksi dan struktur database
+        run: php _Test/database_check.php
+
+      - name: Periksa record kredensial API aktif
+        run: php _Test/api_credential_check.php

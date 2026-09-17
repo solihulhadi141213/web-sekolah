@@ -4,7 +4,7 @@
 
 Template website sekolah responsif berbasis HTML, CSS, dan JavaScript, dengan tampilan MI Plus Annur Kuningan. Membantu orang tua mengenal sekolah melalui profil, tenaga pendidik, fasilitas, dokumentasi kegiatan, serta informasi pendaftaran.
 
-Konten dapat diedit langsung dari file proyek. Tidak memerlukan database, backend, atau proses build untuk menjalankan halaman.
+Konten halaman profil dapat diedit langsung dari file proyek dan dijalankan tanpa database atau proses build. Inisialisasi kredensial API memerlukan PHP, ekstensi PDO MySQL, dan database MySQL.
 
 [Lihat tampilan](#tangkapan-layar) · [Mulai menjalankan](#menjalankan-proyek) · [Kustomisasi](#kustomisasi) · [Panduan SEO](SEO.md)
 
@@ -147,6 +147,59 @@ web-sekolah/
 ├── SEO.md                   # Catatan SEO dan publikasi
 └── LICENSE                  # Apache License 2.0
 ```
+
+## Konfigurasi koneksi dan kredensial
+
+Setelah mengunduh atau melakukan clone proyek, buat direktori `_Config` di akar proyek, lalu buat file `_Config/config.php` secara manual. File ini diabaikan oleh Git karena menyimpan parameter koneksi dan kredensial, sehingga tidak disertakan dalam repositori.
+
+Isi file tersebut dengan konfigurasi PHP yang dibutuhkan oleh kode koneksi aplikasi, seperti host database, nama database, nama pengguna, dan kata sandi. Sesuaikan nama variabel atau struktur konfigurasi dengan kode yang membacanya. Gunakan kredensial milik lingkungan masing-masing dan jangan memasukkannya ke README atau commit.
+
+Untuk deployment, buat file ini langsung di server melalui akses privat. `.gitignore` hanya mencegah file baru dilacak Git; aturan ini tidak membatasi akses HTTP pada server.
+
+### Parameter JWT
+
+Tambahkan `jwt_secret_key` dan `jwt_issuer` ke array yang dikembalikan oleh `_Config/config.php`, dengan tetap mempertahankan parameter database dan konfigurasi lainnya.
+
+- `jwt_secret_key`: kunci rahasia untuk penandatanganan dan verifikasi JWT. Buat nilai acak tersendiri untuk setiap lingkungan, simpan hanya di server, dan jangan gunakan API secret klien sebagai penggantinya.
+- `jwt_issuer`: identitas penerbit token (claim `iss`), misalnya `https://sekolah.example`. Sesuaikan dengan identitas layanan Anda dan gunakan nilai yang konsisten pada penerbit serta pemeriksa token.
+
+Untuk membuat kunci acak, jalankan perintah berikut di terminal yang menyediakan PHP, lalu salin hasilnya sebagai nilai `jwt_secret_key` pada konfigurasi lokal:
+
+```bash
+php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"
+```
+
+Buat kunci sekali saat menyiapkan lingkungan dan simpan nilainya; jangan membuat ulang pada setiap request. Mengganti kunci menyebabkan token yang ditandatangani dengan kunci lama gagal diverifikasi oleh kunci baru.
+
+### Membuat kredensial API awal
+
+Skrip [generate_api_key.php](generate_api_key.php) membuat record awal pada tabel `api_credentials` yang strukturnya tersedia di [DB/web_sekolah.sql](DB/web_sekolah.sql).
+
+1. Aktifkan Apache dan MySQL pada WAMP/XAMPP, serta pastikan PHP memiliki ekstensi `pdo_mysql`. Server statis Python tidak dapat menjalankan skrip PHP ini.
+2. Siapkan database baru, lalu impor `DB/web_sekolah.sql` ke database tersebut melalui phpMyAdmin atau klien MySQL. **Berkas SQL berisi `DROP TABLE IF EXISTS`; jangan mengimpornya ulang ke database berisi data yang ingin dipertahankan.**
+3. Buat `_Config/config.php` seperti petunjuk di atas. File harus mengembalikan array PHP dengan kunci `db_host`, `db_name`, `db_user`, dan `db_pass` untuk koneksi database. Sertakan juga `jwt_secret_key` dan `jwt_issuer` untuk konfigurasi JWT aplikasi. Contoh berikut hanya menggunakan placeholder; ganti nilainya sesuai lingkungan Anda dan pertahankan konfigurasi lain yang sudah ada:
+
+   ```php
+   <?php
+   // Parameter koneksi lokal; isi dengan kredensial lingkungan masing-masing.
+   return [
+       'db_host' => 'localhost',
+       'db_name' => 'nama_database_anda',
+       'db_user' => 'pengguna_database_anda',
+       'db_pass' => 'kata_sandi_database_anda',
+       // Parameter JWT; ganti placeholder dengan nilai lingkungan Anda.
+       'jwt_secret_key' => 'ganti_dengan_hasil_random_bytes_di_atas',
+       'jwt_issuer' => 'https://sekolah.example',
+   ];
+   ```
+
+4. Jalankan skrip melalui browser lokal dengan membuka `http://localhost/web-sekolah/generate_api_key.php` (sesuaikan nama folder proyek). Jalankan satu kali, tanpa membuka beberapa permintaan bersamaan.
+5. Setelah berhasil, segera salin API key dan API secret ke penyimpanan rahasia aplikasi klien. Hasil skrip menunjukkan nama header `x-api-key` dan `x-api-secret`. **API secret asli hanya ditampilkan saat pembuatan**; database menyimpan hash dari `password_hash(..., PASSWORD_DEFAULT)`, sehingga secret asli tidak dapat dibaca kembali dari database. Jangan menyimpan hasilnya dalam Git atau JavaScript publik.
+6. Setelah selesai, hapus skrip dari server deployment atau blokir akses publik ke URL tersebut. Skrip belum menyediakan autentikasi admin; pemeriksaan adanya kredensial aktif tidak menggantikan pembatasan akses.
+
+Record yang dibuat menggunakan nama aplikasi `Aplikasi Eksternal Default`, `is_active = 1`, dan permissions `read_articles`, `read_settings`, serta `write_gallery`. Jika diperlukan, sesuaikan `$app_name` dan `$permissions` di skrip sebelum menjalankannya.
+
+**Jika muncul ?Kredensial Sudah Ada?:** skrip menolak pembuatan ketika ada setidaknya satu record dengan `is_active = 1`. Gunakan kredensial yang sudah disimpan. Jika memang perlu mengganti kredensial, admin dapat menonaktifkan record lama (`is_active = 0`) melalui pengelolaan database, lalu menjalankan skrip kembali dan memperbarui konfigurasi klien. Penonaktifan akan mencabut akses klien yang memakai kredensial lama jika API memeriksa status aktif.
 
 ## Kustomisasi
 
