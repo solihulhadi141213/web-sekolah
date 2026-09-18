@@ -2,6 +2,89 @@
 (function () {
   'use strict';
 
+  // Di development, muat ulang stylesheet agar perubahan langsung terlihat.
+  const refreshDevelopmentAssets = function () {
+    const endpoint = new URL('cache-mode.php', document.baseURI);
+    endpoint.searchParams.set('_', String(Date.now()));
+    fetch(endpoint, { cache: 'no-store', credentials: 'same-origin' })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (environment) {
+        if (!environment || environment.mode_environment !== 'DEVELOPMENT') return;
+        const version = String(Date.now());
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(function (stylesheet) {
+          const url = new URL(stylesheet.href, document.baseURI);
+          url.searchParams.set('dev', version);
+          stylesheet.href = url.href;
+        });
+      })
+      .catch(function () {
+        // Cache busting tidak boleh mengganggu fungsi utama halaman.
+      });
+  };
+  refreshDevelopmentAssets();
+
+  // Pasang popup sebelum inisialisasi slider dan efek halaman.
+  // Foto video memiliki aksi putar tersendiri, bukan pratinjau galeri foto.
+  const modalElement = document.getElementById('galleryModal');
+  if (modalElement && window.bootstrap?.Modal) {
+    const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+    const preview = document.getElementById('galleryPreview');
+    let trigger = null;
+    let fullSizeImage = null;
+    const cancelFullSize = function () {
+      if (!fullSizeImage) return;
+      fullSizeImage.onload = null;
+      fullSizeImage.onerror = null;
+      fullSizeImage = null;
+    };
+    document.querySelectorAll('main img').forEach(function (img) {
+      if (img.closest('.video-card')) return;
+      img.classList.add('image-preview');
+      img.setAttribute('role', 'button');
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('aria-label', 'Perbesar gambar: ' + img.alt);
+      img.setAttribute('aria-haspopup', 'dialog');
+      img.setAttribute('aria-controls', 'galleryModal');
+      const open = function () {
+        cancelFullSize();
+        if (img.closest('.teacher-card')) img.classList.add('is-color');
+        trigger = img;
+        // Tampilkan foto yang sudah dimuat tanpa menunggu unduhan versi asli.
+        const thumbnailSrc = img.currentSrc || img.src;
+        preview.src = thumbnailSrc;
+        preview.alt = img.alt;
+        modal.show();
+        const fullSrc = img.dataset.fullSrc;
+        if (fullSrc && fullSrc !== thumbnailSrc) {
+          const candidate = new Image();
+          fullSizeImage = candidate;
+          candidate.onload = function () {
+            if (fullSizeImage !== candidate) return;
+            preview.src = fullSrc;
+            cancelFullSize();
+          };
+          // Pertahankan thumbnail jika gambar asli gagal dimuat.
+          candidate.onerror = cancelFullSize;
+          candidate.src = fullSrc;
+        }
+      };
+      img.addEventListener('click', open);
+      img.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          open();
+        }
+      });
+    });
+    // Bersihkan gambar dan kembalikan fokus ke foto yang sebelumnya dipilih.
+    modalElement.addEventListener('hide.bs.modal', cancelFullSize);
+    modalElement.addEventListener('hidden.bs.modal', function () {
+      preview.removeAttribute('src');
+      preview.alt = '';
+      if (trigger) trigger.focus({ preventScroll: true });
+    });
+  }
+
   // Sinkronkan bayangan navbar tanpa mengubah tata letak saat menggulir.
   const navbar = document.querySelector('.custom-navbar');
   const updateNavbar = function () {
@@ -117,7 +200,10 @@
   document.querySelectorAll('main img').forEach(function (img) {
     if (!img.closest('.heroSwiper')) img.loading = 'lazy';
     img.decoding = 'async';
-    const finish = function () { img.classList.add('image-ready'); };
+    const finish = function () {
+      img.classList.remove('image-loading');
+      img.classList.add('image-ready');
+    };
     img.addEventListener('load', finish, { once: true });
     img.addEventListener('error', finish, { once: true });
     if (img.complete) finish();
@@ -249,15 +335,18 @@
   }
 
   // Kartu guru dapat digeser; kisi CSS tetap tersedia jika Swiper gagal dimuat.
-  if (window.Swiper && document.querySelector('.teacherSwiper')) {
-    new Swiper('.teacherSwiper', {
+  const teacherGallery = document.querySelector('.teacherSwiper');
+  const initTeacherSlider = function () {
+    if (!window.Swiper || !teacherGallery) return;
+    new Swiper(teacherGallery, {
       slidesPerView: 2,
       spaceBetween: 12,
       pagination: { el: '.teacherSwiper .swiper-pagination', clickable: true },
       a11y: { paginationBulletMessage: 'Buka kelompok guru {{index}}' },
       breakpoints: { 768: { slidesPerView: 2, spaceBetween: 20 }, 992: { slidesPerView: 3, spaceBetween: 20 }, 1200: { slidesPerView: 4, spaceBetween: 20 } }
     });
-  }
+  };
+  initTeacherSlider();
 
   // Popover tersedia hanya ketika teks mobile benar-benar terpotong.
   function initClippedPopovers(gallerySelector, fieldSelector) {
@@ -408,39 +497,4 @@
     videoModalElement.addEventListener('hidden.bs.modal', function () { videoTrigger?.focus({ preventScroll: true }); });
   }
 
-  // Foto video memiliki aksi putar tersendiri, bukan pratinjau galeri foto.
-  const modalElement = document.getElementById('galleryModal');
-  if (modalElement && window.bootstrap) {
-    const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-    const preview = document.getElementById('galleryPreview');
-    let trigger = null;
-    document.querySelectorAll('main img').forEach(function (img) {
-      if (img.closest('.video-card')) return;
-      img.classList.add('image-preview');
-      img.setAttribute('role', 'button');
-      img.setAttribute('tabindex', '0');
-      img.setAttribute('aria-label', 'Perbesar gambar: ' + img.alt);
-      img.setAttribute('aria-haspopup', 'dialog');
-      const open = function () {
-        if (img.closest('.teacher-card')) img.classList.add('is-color');
-        trigger = img;
-        preview.src = img.dataset.fullSrc || img.currentSrc || img.src;
-        preview.alt = img.alt;
-        modal.show();
-      };
-      img.addEventListener('click', open);
-      img.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          open();
-        }
-      });
-    });
-    // Bersihkan gambar dan kembalikan fokus ke foto yang sebelumnya dipilih.
-    modalElement.addEventListener('hidden.bs.modal', function () {
-      preview.removeAttribute('src');
-      preview.alt = '';
-      if (trigger) trigger.focus({ preventScroll: true });
-    });
-  }
 })();
