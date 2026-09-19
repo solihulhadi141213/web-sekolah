@@ -4,7 +4,7 @@
 
   // Di development, muat ulang stylesheet agar perubahan langsung terlihat.
   const refreshDevelopmentAssets = function () {
-    const endpoint = new URL('cache-mode.php', document.baseURI);
+    const endpoint = new URL('cache-mode.php', document.body.dataset.baseUrl || document.baseURI);
     endpoint.searchParams.set('_', String(Date.now()));
     fetch(endpoint, { cache: 'no-store', credentials: 'same-origin' })
       .then(function (response) { return response.ok ? response.json() : null; })
@@ -21,7 +21,8 @@
         // Cache busting tidak boleh mengganggu fungsi utama halaman.
       });
   };
-  refreshDevelopmentAssets();
+  // Halaman PHP sudah memberikan versi aset sebelum browser memuatnya.
+  if (!document.body.dataset.environment) refreshDevelopmentAssets();
 
   // Pasang popup sebelum inisialisasi slider dan efek halaman.
   // Foto video memiliki aksi putar tersendiri, bukan pratinjau galeri foto.
@@ -481,7 +482,7 @@
       event.preventDefault();
       videoTrigger = link;
       const card = link.closest('.video-card');
-      const title = card.querySelector('h3').textContent + ' — ' + card.querySelector('.video-card-body p').textContent;
+      const title = card.querySelector('h3').textContent + ' â€” ' + card.querySelector('.video-card-body p').textContent;
       document.getElementById('videoModalTitle').textContent = title;
       document.getElementById('videoYoutubeLink').href = link.href;
       const iframe = document.createElement('iframe');

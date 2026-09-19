@@ -1,18 +1,27 @@
-# Kompresi dokumen teks jika mod_deflate tersedia di server Apache.
+DirectoryIndex index.php
+AcceptPathInfo On
+Options -MultiViews
+RewriteEngine On
+
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/ld+json application/xml image/svg+xml
 </IfModule>
 
-# HTML divalidasi ulang; aset statis disimpan sementara oleh browser.
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType text/html "access plus 0 seconds"
-  ExpiresByType text/css "access plus 7 days"
-  ExpiresByType application/javascript "access plus 7 days"
-  ExpiresByType text/javascript "access plus 7 days"
-  ExpiresByType font/woff2 "access plus 30 days"
-  ExpiresByType image/png "access plus 7 days"
-  ExpiresByType image/jpeg "access plus 7 days"
-  ExpiresByType image/webp "access plus 7 days"
-  ExpiresByType image/svg+xml "access plus 7 days"
-</IfModule>
+# Prefix diambil dari URL permintaan; tidak ada folder instalasi hard-coded.
+# Aset melewati pengaturan cache PHP, termasuk dependency CSS/font.
+RewriteCond %{REQUEST_URI} ^(.*?)/(?:assets|node_modules)/
+RewriteRule ^((?:assets|node_modules)/.*\.(?:css|js|png|jpe?g|gif|webp|avif|svg|ico|woff2?|ttf|otf|webmanifest))$ %1/_Helper/ServeAsset.php?asset=$1 [END]
+
+# Kompatibilitas URL HTML lama.
+RewriteCond %{REQUEST_URI} ^(.*/)[^/]+$
+RewriteRule ^index\.html$ %1index.php [END]
+RewriteCond %{REQUEST_URI} ^(.*/)[^/]+$
+RewriteRule ^teachers\.html$ %1index.php/Guru [END]
+RewriteCond %{REQUEST_URI} ^(.*/)[^/]+$
+RewriteRule ^testimonial\.html$ %1index.php/Testimonial [END]
+
+# URL singkat satu segmen; PATH_INFO index.php/Halaman juga bekerja tanpa rewrite.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} ^(.*/)[^/]+/?$
+RewriteRule ^([A-Za-z0-9_-]+)/?$ %1index.php/$1 [END]

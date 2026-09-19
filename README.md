@@ -8,6 +8,40 @@ Konten halaman profil dapat diedit langsung dari file proyek dan dijalankan tanp
 
 [Lihat tampilan](#tangkapan-layar) · [Mulai menjalankan](#menjalankan-proyek) · [Kustomisasi](#kustomisasi) · [Panduan SEO](SEO.md)
 
+## Konfigurasi, cache, dan routing PHP
+
+Atur `_Config/config.php`:
+
+- `base_url`: alamat instalasi, misalnya `http://localhost/web-sekolah`, `https://sekolah.sch.id`, atau `https://domain.sch.id/portal`. Tautan halaman dan aset mengikuti alamat ini. `.htaccess` mengambil prefix direktori dari permintaan sehingga tidak perlu mengubah `RewriteBase` saat pindah folder/domain.
+- `mode_environment = DEVELOPMENT`: HTML dan aset lokal memakai `Cache-Control: no-store`; CSS/JavaScript juga diberi versi baru setiap render. Reload halaman untuk melihat perubahan.
+- `mode_environment = PRODUCTION`: browser boleh menyimpan HTML dan aset lokal. `Cache-Control: public, no-cache` berarti cache disimpan tetapi divalidasi sebelum dipakai, bukan larangan menyimpan. ETag menghasilkan HTTP 304 jika isinya belum berubah. Versi URL aset mengikuti waktu perubahan file. Validasi ulang juga membuat pergantian ke development langsung terbaca.
+
+Header aset lokal ditangani `_Helper/ServeAsset.php` melalui rewrite Apache, termasuk gambar dan font yang dimuat dari CSS. Kebijakan cache layanan eksternal (Google Fonts, gambar CDN, iframe) ditentukan layanan tersebut. `cache-mode.php` tetap tidak disimpan agar pemeriksaan environment oleh halaman HTML lama selalu terbaru.
+
+| Halaman | URL utama PATH_INFO | Query kompatibilitas |
+| --- | --- | --- |
+| Beranda default | `index.php` | `index.php?route=` |
+| Beranda eksplisit | `index.php/Beranda` | `index.php?route=Beranda` |
+| Guru | `index.php/Guru` | `index.php?route=Guru` |
+| Testimonial | `index.php/Testimonial` | `index.php?route=Testimonial` |
+
+`PATH_INFO` didahulukan jika berisi nama halaman. Slash awal/akhir dibuang; route bertingkat seperti `index.php/Berita/Detail` dapat didaftarkan dengan key `Berita/Detail`. URL singkat satu segmen (`Guru`) dan tautan HTML lama tetap didukung Apache. PATH_INFO tidak memerlukan rewrite.
+
+Untuk menambah halaman, buat file PHP konten lalu tambahkan satu entri pada `$routes` di `_Partial/RoutingPage.php`:
+
+```php
+'Kontak' => [
+    'file' => '_Page/Kontak/Kontak.php',
+    'title' => 'Kontak | MI Plus Annur Kuningan',
+    'description' => 'Hubungi sekolah kami.',
+    'class' => '',
+],
+```
+
+Gunakan `$pageUrl('Kontak')` untuk tautan menu dan `$assetUrl('assets/css/style.css')` untuk aset. Menu ditambahkan sesuai kebutuhan di `_Partial/Navbar.php`.
+
+`$pageFile` awalnya kosong. URL tanpa nama halaman memilih `$defaultPage` (Beranda); URL dengan nama halaman memilih entri `$routes`. Route tidak dikenal/file tidak tersedia menghasilkan 404, bukan fallback Beranda; parameter route array menghasilkan 400. Pemilihan route dan status HTTP selesai sebelum HTML dikirim. Konten Guru dan Testimonial masih memakai template yang tersedia, belum mengambil data database/API.
+
 ## Tampilan Web
 
 [![Tangkapan layar website MI Plus Annur Kuningan](assets/img/Mobile.jpeg)](assets/img/Mobile.jpeg)

@@ -581,6 +581,31 @@ li {
   background: #eee8f7;
 }
 
+#student {
+  background: linear-gradient(135deg, #fff8ee 0%, #f8f1e8 52%, #eef6f1 100%);
+}
+
+#facility {
+  background: linear-gradient(135deg, #e8f6f1 0%, #dcefeb 52%, #e4eef5 100%);
+}
+
+#facility .section-heading h2 {
+  color: var(--primary-dark);
+}
+
+#facility .section-heading .eyebrow {
+  background: rgba(32, 91, 86, .12);
+  color: #205b56;
+}
+
+#facility .swiper-pagination-bullet {
+  background: rgba(32, 91, 86, .38);
+}
+
+#facility .swiper-pagination-bullet-active {
+  background: #205b56;
+}
+
 .teacher-more-button {
   text-decoration: none;
   display: inline-flex;

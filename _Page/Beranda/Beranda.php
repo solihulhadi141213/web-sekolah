@@ -1,0 +1,910 @@
+<section id="home" class="hero-section reveal">
+    <div class="container">
+    <div class="hero-layout">
+        <div class="hero-copy reveal">
+        <h1 class="hero-kicker">MI Plus Annur Kuningan</h1>
+        <p class="hero-title" aria-live="polite">KEDISIPLINAN</p>
+        <p class="hero-subtitle" aria-live="polite">Melatih kedisiplinan dan kemandirian. Membangun jiwa yang mandiri.</p>
+        </div>
+        <div class="hero-visual reveal">
+            <div class="swiper heroSwiper" role="region" aria-label="Sorotan kegiatan sekolah" aria-roledescription="karusel">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" data-hero-title="KEDISIPLINAN" data-hero-subtitle="Melatih kedisiplinan dan kemandirian. Membangun jiwa yang mandiri.">
+                <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg?auto=format,compress&amp;w=900" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg?auto=format,compress&amp;w=480 480w, https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg?auto=format,compress&amp;w=900 900w, https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg?auto=format,compress&amp;w=1440 1440w" sizes="(max-width: 767px) 100vw, 50vw" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg" alt="Upacara Bendera Untuk Melatih Diri" width="900" height="1125" fetchpriority="high" decoding="async" />
+                </div>
+                <div class="swiper-slide" data-hero-title="BELAJAR" data-hero-subtitle="Langkah kecil hari ini. Masa depan yang berarti.">
+                <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg?auto=format,compress&amp;w=900" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg?auto=format,compress&amp;w=480 480w, https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg?auto=format,compress&amp;w=900 900w, https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg?auto=format,compress&amp;w=1440 1440w" sizes="(max-width: 767px) 100vw, 50vw" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg" alt="Suasana belajar yang inspiratif" width="900" height="1125" loading="lazy" decoding="async" />
+                </div>
+                <div class="swiper-slide" data-hero-title="BERTUMBUH" data-hero-subtitle="Buka buku. Perluas cakrawala.">
+                <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png?auto=format,compress&amp;w=900" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png?auto=format,compress&amp;w=480 480w, https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png?auto=format,compress&amp;w=900 900w, https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png?auto=format,compress&amp;w=1440 1440w" sizes="(max-width: 767px) 100vw, 50vw" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png" alt="Buku-buku untuk menumbuhkan kecintaan membaca" width="900" height="1125" loading="lazy" decoding="async" />
+                </div>
+                <div class="swiper-slide" data-hero-title="BERKARYA" data-hero-subtitle="Temukan bakat. Tumbuh penuh semangat.">
+                <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/konten/cce47b38dcf1101813635486510d96e0.jpg?auto=format,compress&amp;w=900" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/konten/cce47b38dcf1101813635486510d96e0.jpg?auto=format,compress&amp;w=480 480w, https://6aa97c5b9422e77b387ff09b.imgix.net/konten/cce47b38dcf1101813635486510d96e0.jpg?auto=format,compress&amp;w=900 900w, https://6aa97c5b9422e77b387ff09b.imgix.net/konten/cce47b38dcf1101813635486510d96e0.jpg?auto=format,compress&amp;w=1440 1440w" sizes="(max-width: 767px) 100vw, 50vw" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/konten/cce47b38dcf1101813635486510d96e0.jpg" alt="Olahraga untuk melatih semangat dan kerja sama" width="900" height="1125" loading="lazy" decoding="async" />
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section id="statistics" class="statistics-section section-soft reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5">
+        <span class="eyebrow">Statistik</span>
+        <h2>MI Plus Annur Kuningan Dalam Angka</h2>
+    </div>
+    <div class="hero-stats statistics-grid row g-3">
+        <div class="col-6 col-lg-3"><strong>1.300+</strong><span>Alumni</span></div>
+        <div class="col-6 col-lg-3"><strong>360</strong><span>Siswa</span></div>
+        <div class="col-6 col-lg-3"><strong>26</strong><span>Guru & Staff</span></div>
+        <div class="col-6 col-lg-3"><strong>20+</strong><span>Prestasi</span></div>
+    </div>
+    </div>
+</section>
+
+<section id="leadership" class="section reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Selayang Pandang</span>
+        <h2>Perjalanan dan kepemimpinan sekolah</h2>
+    </div>
+    <div class="leadership-card reveal">
+        <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+            <div class="person-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_hpxi2ihpxi2ihpxi.jpeg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_hpxi2ihpxi2ihpxi.jpeg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_hpxi2ihpxi2ihpxi.jpeg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_hpxi2ihpxi2ihpxi.jpeg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 639px) 90vw, (max-width: 1199px) 45vw, 360px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_hpxi2ihpxi2ihpxi.jpeg" alt="D. Sukandar Yusuf, Kepala MI Plus Annur Kuningan" loading="lazy" decoding="async" />
+            
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="person-info">
+                <h3>D. Sukandar Yusuf, S.Pd.I, M.S.I.</h3>
+                <p>Kepala Sekolah</p>
+            </div>
+            <div class="leadership-copy">
+            <p>
+                “Kami percaya pendidikan bukan sekadar transfer ilmu, tetapi proses membentuk karakter,
+                menumbuhkan rasa percaya diri, dan menyiapkan anak untuk menjadi insan yang bermanfaat bagi
+                keluarga, masyarakat, dan bangsanya.”
+            </p>
+            <p>
+                Dengan semangat keislaman, inovasi pembelajaran, dan perhatian penuh terhadap kebutuhan setiap
+                peserta didik, MI Plus Annur Kuningan terus bergerak maju untuk menciptakan lingkungan belajar yang
+                aman, nyaman, dan inspiratif.
+            </p>
+            <div class="quote-mark">“</div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section id="profile" class="section section-soft reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Profil Sekolah</span>
+        <h2>Berdaya dan berdampak sejak dini</h2>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-xl-3 reveal">
+        <div class="info-card h-100">
+            <div class="profile-card-top">
+            <div class="icon-wrap"><i class="bi bi-clock-history" aria-hidden="true"></i></div>
+            </div>
+            <h3>Sejarah</h3>
+            <p>
+            MI Plus Annur Kuningan lahir sebagai lembaga pendidikan yang menggabungkan nilai keislaman,
+            kecerdasan akademik, dan karakter unggul.
+            </p>
+        </div>
+        </div>
+        <div class="col-md-6 col-xl-3 reveal">
+        <div class="info-card h-100">
+            <div class="profile-card-top">
+            <div class="icon-wrap"><i class="bi bi-bullseye" aria-hidden="true"></i></div>
+            </div>
+            <h3>Visi</h3>
+            <p>
+            Membentuk generasi yang beriman, berilmu, mandiri, berakhlak mulia, berbahasa, dan hafal Al-Qur’an.
+            </p>
+        </div>
+        </div>
+        <div class="col-md-6 col-xl-3 reveal">
+        <div class="info-card h-100">
+            <div class="profile-card-top">
+            <div class="icon-wrap"><i class="bi bi-flag-fill" aria-hidden="true"></i></div>
+            </div>
+            <h3>Misi</h3>
+            <p>
+            Menanamkan keimanan, akhlak, potensi akademik, kecakapan hidup, serta persiapan jenjang pendidikan berikutnya.
+            </p>
+        </div>
+        </div>
+        <div class="col-md-6 col-xl-3 reveal">
+        <div class="info-card h-100">
+            <div class="profile-card-top">
+            <div class="icon-wrap"><i class="bi bi-patch-check-fill" aria-hidden="true"></i></div>
+            </div>
+            <h3>Akreditasi</h3>
+            <p>
+            Komitmen terhadap mutu pendidikan yang terukur, amanah, dan berkesinambungan dalam layanan belajar.
+            </p>
+        </div>
+        </div>
+    </div>
+
+    </div>
+</section>
+
+<section id="teachers" class="section reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Guru & Tenaga Pendidikan</span>
+        <h2>Para pendidik yang inspiratif</h2>
+    </div>
+
+    <div class="swiper teacherSwiper reveal" id="teacherList">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="teacher-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/fbb0e4d57421d03576432fe307e5ba16.jpg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/fbb0e4d57421d03576432fe307e5ba16.jpg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/fbb0e4d57421d03576432fe307e5ba16.jpg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/fbb0e4d57421d03576432fe307e5ba16.jpg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 767px) 45vw, (max-width: 991px) 340px, (max-width: 1199px) 300px, 270px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/fbb0e4d57421d03576432fe307e5ba16.jpg" alt="Siti Nurhasanah - Guru MI Plus Annur Kuningan" loading="lazy" decoding="async" />
+            <div class="teacher-body">
+                <h3>Lia Mulyanengsih, S.Pd</h3>
+                <p>Wali Kelas 1</p>
+                <span>Bahasa Indonesia</span>
+            </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="teacher-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/b40e8f6b143876a05809a2c5cf42f557.jpg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/b40e8f6b143876a05809a2c5cf42f557.jpg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/b40e8f6b143876a05809a2c5cf42f557.jpg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/b40e8f6b143876a05809a2c5cf42f557.jpg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 767px) 45vw, (max-width: 991px) 340px, (max-width: 1199px) 300px, 270px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/b40e8f6b143876a05809a2c5cf42f557.jpg" alt="Intan Permatasari - Guru MI Plus Annur Kuningan" loading="lazy" decoding="async" />
+            <div class="teacher-body">
+                <h3>Meri Aryanti, S.Pd.I.</h3>
+                <p>Guru Pengajar</p>
+                <span>Bahasa Indonesia</span>
+            </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="teacher-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/076a9b7203ffd60c7cdf8de4f7088b6a.jpg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/076a9b7203ffd60c7cdf8de4f7088b6a.jpg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/076a9b7203ffd60c7cdf8de4f7088b6a.jpg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/076a9b7203ffd60c7cdf8de4f7088b6a.jpg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 767px) 45vw, (max-width: 991px) 340px, (max-width: 1199px) 300px, 270px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/076a9b7203ffd60c7cdf8de4f7088b6a.jpg" alt="Rina Amelia - Guru MI Plus Annur Kuningan" loading="lazy" decoding="async" />
+            <div class="teacher-body">
+                <h3>Ika Lestari, S.Pd</h3>
+                <p>Guru IPA</p>
+                <span>Studi Alam</span>
+            </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="teacher-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/ad8eae7802cee9f1324cae77781c27fd.jpg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/ad8eae7802cee9f1324cae77781c27fd.jpg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/ad8eae7802cee9f1324cae77781c27fd.jpg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/ad8eae7802cee9f1324cae77781c27fd.jpg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 767px) 45vw, (max-width: 991px) 340px, (max-width: 1199px) 300px, 270px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/ad8eae7802cee9f1324cae77781c27fd.jpg" alt="Meri Aryanti, S.Pd.I. - Guru MI Plus Annur Kuningan" loading="lazy" decoding="async" />
+            <div class="teacher-body">
+                <h3>Aep Saepulah, S.Pd.I</h3>
+                <p>Guru Pendidikan Agama</p>
+                <span>Akhlak & Qur'an</span>
+            </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="teacher-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/8107aeb902c96bd61f2b6aec6e7944f4.jpg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/8107aeb902c96bd61f2b6aec6e7944f4.jpg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/8107aeb902c96bd61f2b6aec6e7944f4.jpg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/8107aeb902c96bd61f2b6aec6e7944f4.jpg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 767px) 45vw, (max-width: 991px) 340px, (max-width: 1199px) 300px, 270px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/8107aeb902c96bd61f2b6aec6e7944f4.jpg" alt="Nadia Permata - Guru MI Plus Annur Kuningan" loading="lazy" decoding="async" />
+            <div class="teacher-body">
+                <h3>Ade Gumelar, S.Pd.I.</h3>
+                <p>Guru Bahasa Inggris</p>
+                <span>English Club</span>
+            </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="teacher-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/69516ddf21fe247a952a6bd0b409e7bb.jpg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/69516ddf21fe247a952a6bd0b409e7bb.jpg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/69516ddf21fe247a952a6bd0b409e7bb.jpg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/69516ddf21fe247a952a6bd0b409e7bb.jpg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 767px) 45vw, (max-width: 991px) 340px, (max-width: 1199px) 300px, 270px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/69516ddf21fe247a952a6bd0b409e7bb.jpg" alt="Sri Wahyuningsih - Guru Seni" loading="lazy" decoding="async" />
+            <div class="teacher-body">
+                <h3>Sri Wahyuningsih, S.Pd.</h3>
+                <p>Guru Seni & Keterampilan</p>
+                <span>Kreativitas</span>
+            </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="teacher-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7c5f84808b69a5a47d86988e79688dd1.jpg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7c5f84808b69a5a47d86988e79688dd1.jpg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7c5f84808b69a5a47d86988e79688dd1.jpg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7c5f84808b69a5a47d86988e79688dd1.jpg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 767px) 45vw, (max-width: 991px) 340px, (max-width: 1199px) 300px, 270px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7c5f84808b69a5a47d86988e79688dd1.jpg" alt="Rizky Maulana - Guru MI Plus Annur Kuningan" loading="lazy" decoding="async" />
+            <div class="teacher-body">
+                <h3>Danis, S.Pd.</h3>
+                <p>Guru PJOK</p>
+                <span>Olahraga</span>
+            </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="teacher-card">
+            <img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7f889a0cf5ed7debeede26ae6b4536e5.jpg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7f889a0cf5ed7debeede26ae6b4536e5.jpg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7f889a0cf5ed7debeede26ae6b4536e5.jpg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7f889a0cf5ed7debeede26ae6b4536e5.jpg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 767px) 45vw, (max-width: 991px) 340px, (max-width: 1199px) 300px, 270px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Guru/7f889a0cf5ed7debeede26ae6b4536e5.jpg" alt="Hana Lestari - Guru MI Plus Annur Kuningan" loading="lazy" decoding="async" />
+            <div class="teacher-body">
+                <h3>Imas Maesaroh, S.Pd.I</h3>
+                <p>Guru Kelas 6</p>
+                <span>Tematik</span>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="text-center mt-4">
+        <a class="teacher-more-button" href="<?php echo $config['base_url']; ?>/Guru">
+            <span class="teacher-more-label">Selengkapnya</span> <span class="teacher-more-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14m-6-6 6 6-6 6" />
+                </svg>
+            </span>
+        </a>
+    </div>
+    </div>
+</section>
+
+<section id="academic" class="section section-soft reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Testimonial</span>
+        <h2>Cerita dari keluarga MI Plus Annur</h2>
+    </div>
+
+    <div class="swiper testimonialSwiper reveal" role="region" aria-label="Testimonial keluarga sekolah" aria-roledescription="karusel">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <article class="testimonial-card">
+            <img class="testimonial-avatar" src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/e007d5c6c085b1896fb22eec7f74d2f9.jpg?auto=format,compress&amp;w=320" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/e007d5c6c085b1896fb22eec7f74d2f9.jpg?auto=format,compress&amp;w=160 160w, https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/e007d5c6c085b1896fb22eec7f74d2f9.jpg?auto=format,compress&amp;w=320 320w" sizes="80px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/e007d5c6c085b1896fb22eec7f74d2f9.jpg" alt="Testimonial Siti Nurhasanah" loading="lazy" decoding="async" />
+            <div class="testimonial-body">
+                <h3>Siti Nurhasanah</h3>
+                <p>“Guru-gurunya sabar dan perhatian. Anak saya tumbuh lebih percaya diri dan senang belajar setiap hari.”</p>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="testimonial-card">
+            <img class="testimonial-avatar" src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/7801d3122770d5c53fcbeabf1018276d.jpg?auto=format,compress&amp;w=320" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/7801d3122770d5c53fcbeabf1018276d.jpg?auto=format,compress&amp;w=160 160w, https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/7801d3122770d5c53fcbeabf1018276d.jpg?auto=format,compress&amp;w=320 320w" sizes="80px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/7801d3122770d5c53fcbeabf1018276d.jpg" alt="Testimonial Intan Permatasari" loading="lazy" decoding="async" />
+            <div class="testimonial-body">
+                <h3>Intan Permatasari</h3>
+                <p>“Lingkungan sekolahnya hangat, komunikasinya terbuka, dan nilai akhlak benar-benar diterapkan.”</p>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="testimonial-card">
+            <img class="testimonial-avatar" src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/4470b9222ef41886d5b1421d88c6ba57.jpg?auto=format,compress&amp;w=320" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/4470b9222ef41886d5b1421d88c6ba57.jpg?auto=format,compress&amp;w=160 160w, https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/4470b9222ef41886d5b1421d88c6ba57.jpg?auto=format,compress&amp;w=320 320w" sizes="80px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/4470b9222ef41886d5b1421d88c6ba57.jpg" alt="Testimonial Rina Amelia" loading="lazy" decoding="async" />
+            <div class="testimonial-body">
+                <h3>Rina Amelia</h3>
+                <p>“Program literasi dan tahfidz membantu anak membangun kebiasaan baik sekaligus mencintai ilmu.”</p>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="testimonial-card">
+            <img class="testimonial-avatar" src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/911cb0269dc8987b08c5fbb52b159458.jpg?auto=format,compress&amp;w=320" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/911cb0269dc8987b08c5fbb52b159458.jpg?auto=format,compress&amp;w=160 160w, https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/911cb0269dc8987b08c5fbb52b159458.jpg?auto=format,compress&amp;w=320 320w" sizes="80px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/911cb0269dc8987b08c5fbb52b159458.jpg" alt="Testimonial Meri Aryanti" loading="lazy" decoding="async" />
+            <div class="testimonial-body">
+                <h3>Meri Aryanti</h3>
+                <p>“Sekolah memberi ruang bagi anak untuk berprestasi tanpa meninggalkan pembentukan karakter.”</p>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="testimonial-card">
+            <img class="testimonial-avatar" src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/869d37f14b8bb132a236b12a800fdcaa.jpg?auto=format,compress&amp;w=320" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/869d37f14b8bb132a236b12a800fdcaa.jpg?auto=format,compress&amp;w=160 160w, https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/869d37f14b8bb132a236b12a800fdcaa.jpg?auto=format,compress&amp;w=320 320w" sizes="80px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/869d37f14b8bb132a236b12a800fdcaa.jpg" alt="Testimonial Nadia Permata" loading="lazy" decoding="async" />
+            <div class="testimonial-body">
+                <h3>Nadia Permata</h3>
+                <p>“Kegiatan belajar terasa aktif dan menyenangkan. Anak selalu punya cerita positif sepulang sekolah.”</p>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="testimonial-card">
+            <img class="testimonial-avatar" src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/266eb50cde2c4e55b898992462d9669d.jpg?auto=format,compress&amp;w=320" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/266eb50cde2c4e55b898992462d9669d.jpg?auto=format,compress&amp;w=160 160w, https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/266eb50cde2c4e55b898992462d9669d.jpg?auto=format,compress&amp;w=320 320w" sizes="80px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/266eb50cde2c4e55b898992462d9669d.jpg" alt="Testimonial Yuni Kartika" loading="lazy" decoding="async" />
+            <div class="testimonial-body">
+                <h3>Yuni Kartika</h3>
+                <p>“Perpaduan pendidikan agama, akademik, dan kreativitas membuat perkembangan anak lebih seimbang.”</p>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="testimonial-card">
+            <img class="testimonial-avatar" src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/86c0d9068bbbc7cca581fd2428e97e8c.jpg?auto=format,compress&amp;w=320" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/86c0d9068bbbc7cca581fd2428e97e8c.jpg?auto=format,compress&amp;w=160 160w, https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/86c0d9068bbbc7cca581fd2428e97e8c.jpg?auto=format,compress&amp;w=320 320w" sizes="80px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/86c0d9068bbbc7cca581fd2428e97e8c.jpg" alt="Testimonial Rizky Maulana" loading="lazy" decoding="async" />
+            <div class="testimonial-body">
+                <h3>Rizky Maulana</h3>
+                <p>“Sekolah mendampingi anak dengan pendekatan yang dekat dan membuat orang tua merasa dilibatkan.”</p>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="testimonial-card">
+            <img class="testimonial-avatar" src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/0e6fa497f2b052d1faaca243958c498f.jpg?auto=format,compress&amp;w=320" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/0e6fa497f2b052d1faaca243958c498f.jpg?auto=format,compress&amp;w=160 160w, https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/0e6fa497f2b052d1faaca243958c498f.jpg?auto=format,compress&amp;w=320 320w" sizes="80px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Testimoni/0e6fa497f2b052d1faaca243958c498f.jpg" alt="Testimonial Hana Lestari" loading="lazy" decoding="async" />
+            <div class="testimonial-body">
+                <h3>Hana Lestari</h3>
+                <p>“Kami melihat perubahan yang baik dalam kemandirian, kedisiplinan, dan semangat belajar anak.”</p>
+            </div>
+            </article>
+        </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="text-center mt-4">
+        <a class="teacher-more-button" href="<?= $escape($siteUrl('Testimonial')) ?>">
+            <span class="teacher-more-label">Selengkapnya</span>
+            <span class="teacher-more-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14m-6-6 6 6-6 6" />
+                </svg>
+            </span>
+        </a>
+    </div>
+    </div>
+</section>
+
+<section id="student" class="section reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Kesiswaan</span>
+        <h2>Pengembangan bakat, minat, dan kepemimpinan</h2>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-4 reveal">
+        <div class="student-box">
+            <h3>Organisasi Siswa</h3>
+            <div class="accordion student-list-group" id="studentOrganization">
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentOsis" aria-controls="studentOsis" aria-expanded="false">OSIS</button>
+                <div id="studentOsis" class="collapse student-list-description" data-bs-parent="#studentOrganization">Wadah siswa untuk belajar berorganisasi, bekerja sama, dan melatih kepemimpinan.</div>
+            </div>
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentPramuka" aria-controls="studentPramuka" aria-expanded="false">Pramuka</button>
+                <div id="studentPramuka" class="collapse student-list-description" data-bs-parent="#studentOrganization">Kegiatan kepanduan untuk membangun kemandirian, kedisiplinan, dan kepedulian terhadap sesama.</div>
+            </div>
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentPmr" aria-controls="studentPmr" aria-expanded="false">PMR</button>
+                <div id="studentPmr" class="collapse student-list-description" data-bs-parent="#studentOrganization">Palang Merah Remaja melatih kepedulian, kebiasaan hidup sehat, dan semangat menolong sesama.</div>
+            </div>
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentStudy" aria-controls="studentStudy" aria-expanded="false">Kelompok Belajar</button>
+                <div id="studentStudy" class="collapse student-list-description" data-bs-parent="#studentOrganization">Kelompok pendampingan belajar yang membantu siswa bertukar pengetahuan dan menyelesaikan tugas bersama.</div>
+            </div>
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentOther" aria-controls="studentOther" aria-expanded="false">DLL</button>
+                <div id="studentOther" class="collapse student-list-description" data-bs-parent="#studentOrganization">Kegiatan organisasi lainnya untuk mendukung minat, kerja sama, dan pengembangan diri siswa.</div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-4 reveal">
+        <div class="student-box">
+            <h3>Ekstrakurikuler</h3>
+            <div class="accordion student-list-group" id="studentActivities">
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentQiroah" aria-controls="studentQiroah" aria-expanded="false">Qiro’at & Tahfidz</button>
+                <div id="studentQiroah" class="collapse student-list-description" data-bs-parent="#studentActivities">Program untuk memperindah bacaan Al-Qur’an dan membangun kebiasaan menghafal secara bertahap.</div>
+            </div>
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentSport" aria-controls="studentSport" aria-expanded="false">Olahraga</button>
+                <div id="studentSport" class="collapse student-list-description" data-bs-parent="#studentActivities">Kegiatan fisik yang menjaga kebugaran sekaligus melatih sportivitas dan kerja sama tim.</div>
+            </div>
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentArt" aria-controls="studentArt" aria-expanded="false">Seni & Keterampilan</button>
+                <div id="studentArt" class="collapse student-list-description" data-bs-parent="#studentActivities">Ruang untuk mengembangkan kreativitas siswa melalui seni, kerajinan, dan keterampilan praktis.</div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-4 reveal">
+        <div class="student-box">
+            <h3>Prestasi</h3>
+            <div class="accordion student-list-group" id="studentAchievements">
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentQuranAward" aria-controls="studentQuranAward" aria-expanded="false">Lomba baca tulis Al-Qur’an</button>
+                <div id="studentQuranAward" class="collapse student-list-description" data-bs-parent="#studentAchievements">Ajang untuk mengasah kemampuan membaca, menulis, dan memahami nilai-nilai Al-Qur’an.</div>
+            </div>
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentSportAward" aria-controls="studentSportAward" aria-expanded="false">Olahraga tingkat kecamatan</button>
+                <div id="studentSportAward" class="collapse student-list-description" data-bs-parent="#studentAchievements">Kesempatan bagi siswa untuk menunjukkan kemampuan olahraga dan semangat bertanding secara sportif.</div>
+            </div>
+            <div class="list-group-item">
+                <button class="student-list-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#studentArtAward" aria-controls="studentArtAward" aria-expanded="false">Festival seni dan kreativitas</button>
+                <div id="studentArtAward" class="collapse student-list-description" data-bs-parent="#studentAchievements">Panggung bagi siswa untuk menampilkan karya, bakat, dan ide kreatif dalam suasana yang inspiratif.</div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section id="facility" class="section section-soft reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Fasilitas</span>
+        <h2>Lingkungan belajar yang nyaman dan aman</h2>
+    </div>
+
+    <div class="swiper facilitySwiper reveal" role="region" aria-label="Fasilitas sekolah" aria-roledescription="karusel">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide">
+        <div class="facility-card">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 639px) 90vw, (max-width: 1199px) 45vw, 360px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Ruang-Kelas.jpeg" alt="Ruang kelas" loading="lazy" decoding="async" /></div>
+            <div class="facility-body">
+            <h3>Ruang Kelas</h3>
+            <p>Nyaman, bersih, dan didukung media pembelajaran interaktif.</p>
+            </div>
+        </div>
+        </div>
+        <div class="swiper-slide">
+        <div class="facility-card">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_pukq5opukq5opukq.jpeg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_pukq5opukq5opukq.jpeg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_pukq5opukq5opukq.jpeg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_pukq5opukq5opukq.jpeg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 639px) 90vw, (max-width: 1199px) 45vw, 360px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_pukq5opukq5opukq.jpeg" alt="Laboratorium" loading="lazy" decoding="async" /></div>
+            <div class="facility-body">
+            <h3>Laboratorium</h3>
+            <p>Tempat eksperimen dan praktik yang mendukung rasa ingin tahu siswa.</p>
+            </div>
+        </div>
+        </div>
+        <div class="swiper-slide">
+        <div class="facility-card">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_2l1mmf2l1mmf2l1m.jpeg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_2l1mmf2l1mmf2l1m.jpeg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_2l1mmf2l1mmf2l1m.jpeg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_2l1mmf2l1mmf2l1m.jpeg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 639px) 90vw, (max-width: 1199px) 45vw, 360px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_2l1mmf2l1mmf2l1m.jpeg" alt="Perpustakaan" loading="lazy" decoding="async" /></div>
+            <div class="facility-body">
+            <h3>Perpustakaan</h3>
+            <p>Koleksi buku pendukung literasi, pendidikan karakter, dan pengetahuan umum.</p>
+            </div>
+        </div>
+        </div>
+        <div class="swiper-slide">
+        <div class="facility-card">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png?auto=format,compress&amp;w=960 960w" sizes="(max-width: 639px) 90vw, (max-width: 1199px) 45vw, 360px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Sarana/BCO.a7ef8e95-82e3-42f7-92a1-aeea49809975.png" alt="Lapangan" loading="lazy" decoding="async" /></div>
+            <div class="facility-body">
+            <h3>Lapangan</h3>
+            <p>Area olahraga dan kegiatan fisik yang mendorong kesehatan dan kerja sama.</p>
+            </div>
+        </div>
+        </div>
+        <div class="swiper-slide">
+        <div class="facility-card">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 639px) 90vw, (max-width: 1199px) 45vw, 360px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Ibadah.jpeg" alt="Tempat ibadah" loading="lazy" decoding="async" /></div>
+            <div class="facility-body">
+            <h3>Tempat Ibadah</h3>
+            <p>Mendukung pembiasaan ibadah dan pembentukan akhlak mulia di lingkungan sekolah.</p>
+            </div>
+        </div>
+        </div>
+        <div class="swiper-slide">
+        <div class="facility-card">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_1w591g1w591g1w59.jpeg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_1w591g1w591g1w59.jpeg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_1w591g1w591g1w59.jpeg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_1w591g1w591g1w59.jpeg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 639px) 90vw, (max-width: 1199px) 45vw, 360px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_1w591g1w591g1w59.jpeg" alt="Ruang digital" loading="lazy" decoding="async" /></div>
+            <div class="facility-body">
+            <h3>Ruang Digital</h3>
+            <p>Memfasilitasi pembelajaran berbasis teknologi dan kreativitas digital siswa.</p>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="text-center mt-4">
+        <a class="teacher-more-button" href="<?= $escape($siteUrl('Fasilitas')) ?>">
+            <span class="teacher-more-label">Selengkapnya</span>
+            <span class="teacher-more-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14m-6-6 6 6-6 6" />
+                </svg>
+            </span>
+        </a>
+    </div>
+    </div>
+</section>
+
+<section id="news" class="section reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Berita & Pengumuman</span>
+        <h2>Informasi terbaru dari sekolah</h2>
+    </div>
+
+    <div class="swiper newsSwiper reveal" role="region" aria-label="Berita dan pengumuman sekolah" aria-roledescription="karusel">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide">
+        <article class="news-card h-100">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/konten/4cb14b0b8aa5b5274ee33e81806ccbdd.jpg" alt="Berita 1" loading="lazy" decoding="async" /></div>
+            <div class="news-body">
+            <span class="news-tag">Berita</span>
+            <h3>Program literasi membaca intensif dibuka untuk siswa kelas 1-6</h3>
+            <p>Program ini bertujuan meningkatkan minat baca, pemahaman, dan kemampuan berbahasa siswa.</p>
+            <a class="news-read-more" href="<?= $escape($siteUrl('blog.html')) ?>">Baca Selengkapnya <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </article>
+        </div>
+        <div class="swiper-slide">
+        <article class="news-card h-100">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/konten/1576520bd1b5348189d4274e6bab99f4.jpg" alt="Berita 2" loading="lazy" decoding="async" /></div>
+            <div class="news-body">
+            <span class="news-tag">Agenda</span>
+            <h3>Jadwal kegiatan tahfidz dan lomba membaca Al-Qur’an</h3>
+            <p>Siswa akan mengikuti kegiatan yang menumbuhkan semangat menumbuhkan hafalan dan estetika baca.</p>
+            <a class="news-read-more" href="<?= $escape($siteUrl('blog.html')) ?>">Baca Selengkapnya <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </article>
+        </div>
+        <div class="swiper-slide">
+        <article class="news-card h-100">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/konten/ed9777f79f0ac87e5b335011967e2c91.jpg" alt="Berita 3" loading="lazy" decoding="async" /></div>
+            <div class="news-body">
+            <span class="news-tag">Pengumuman</span>
+            <h3>Pendaftaran siswa baru dibuka, simak jadwal dan persyaratannya</h3>
+            <p>Proses pendaftaran dan seleksi sudah dimulai. Segera siapkan dokumen penting Anda.</p>
+            <a class="news-read-more" href="<?= $escape($siteUrl('blog.html')) ?>">Baca Selengkapnya <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </article>
+        </div>
+        <div class="swiper-slide">
+        <article class="news-card h-100">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/konten/f0c6d81abef10e3ff0a26297341f94f2.jpg" alt="Berita 4" loading="lazy" decoding="async" /></div>
+            <div class="news-body">
+            <span class="news-tag">Kegiatan</span>
+            <h3>Pekan kreativitas siswa hadir dengan karya dan penampilan inspiratif</h3>
+            <p>Siswa menampilkan karya seni, kerajinan, dan ide kreatif dalam kegiatan bersama di sekolah.</p>
+            <a class="news-read-more" href="<?= $escape($siteUrl('blog.html')) ?>">Baca Selengkapnya <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </article>
+        </div>
+        <div class="swiper-slide">
+        <article class="news-card h-100">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/688598496_18117896623741745_4476994644927235775_n.jpeg" alt="Berita 5" loading="lazy" decoding="async" /></div>
+            <div class="news-body">
+            <span class="news-tag">Prestasi</span>
+            <h3>Tim sekolah meraih penghargaan dalam lomba tingkat kecamatan</h3>
+            <p>Semangat latihan dan kerja sama siswa membuahkan hasil membanggakan bagi sekolah.</p>
+            <a class="news-read-more" href="<?= $escape($siteUrl('blog.html')) ?>">Baca Selengkapnya <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </article>
+        </div>
+        <div class="swiper-slide">
+        <article class="news-card h-100">
+            <div class="photo-frame"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_1uacye1uacye1uac.jpeg" alt="Berita 6" loading="lazy" decoding="async" /></div>
+            <div class="news-body">
+            <span class="news-tag">Informasi</span>
+            <h3>Orang tua dan sekolah memperkuat kolaborasi pendidikan anak</h3>
+            <p>Pertemuan bersama menjadi ruang untuk berbagi perkembangan siswa dan menyusun dukungan belajar.</p>
+            <a class="news-read-more" href="<?= $escape($siteUrl('blog.html')) ?>">Baca Selengkapnya <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </article>
+        </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="text-center mt-4">
+        <a class="teacher-more-button" href="<?= $escape($siteUrl('Berita')) ?>">
+            <span class="teacher-more-label">Selengkapnya</span>
+            <span class="teacher-more-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14m-6-6 6 6-6 6" />
+                </svg>
+            </span>
+        </a>
+    </div>
+    </div>
+</section>
+
+<section id="gallery" class="section section-soft reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Galeri</span>
+        <h2>Kegiatan sekolah yang inspiratif</h2>
+    </div>
+
+    <div class="swiper gallerySwiper reveal" role="region" aria-label="Galeri kegiatan sekolah" aria-roledescription="karusel">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="gallery-item"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/688598496_18117896623741745_4476994644927235775_n.jpeg?auto=format,compress&amp;w=640" srcset="https://6aa97c5b9422e77b387ff09b.imgix.net/688598496_18117896623741745_4476994644927235775_n.jpeg?auto=format,compress&amp;w=320 320w, https://6aa97c5b9422e77b387ff09b.imgix.net/688598496_18117896623741745_4476994644927235775_n.jpeg?auto=format,compress&amp;w=640 640w, https://6aa97c5b9422e77b387ff09b.imgix.net/688598496_18117896623741745_4476994644927235775_n.jpeg?auto=format,compress&amp;w=960 960w" sizes="(max-width: 639px) 90vw, (max-width: 1199px) 45vw, 360px" data-full-src="https://6aa97c5b9422e77b387ff09b.imgix.net/688598496_18117896623741745_4476994644927235775_n.jpeg" alt="Kegiatan 1" loading="lazy" decoding="async" /></div></div>
+        <div class="swiper-slide"><div class="gallery-item"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/Gemini_Generated_Image_1uacye1uacye1uac.jpeg" alt="Kegiatan 2" loading="lazy" decoding="async" /></div></div>
+        <div class="swiper-slide"><div class="gallery-item"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/590481582_18101566018741745_8310718432425336603_n.jpeg" alt="Kegiatan 3" loading="lazy" decoding="async" /></div></div>
+        <div class="swiper-slide"><div class="gallery-item"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/590389278_18101566027741745_50801679990975678_n.jpeg" alt="Kegiatan 4" loading="lazy" decoding="async" /></div></div>
+        <div class="swiper-slide"><div class="gallery-item"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/587847423_18101566126741745_4438646842697226239_n.jpeg" alt="Kegiatan 5" loading="lazy" decoding="async" /></div></div>
+        <div class="swiper-slide"><div class="gallery-item"><img src="https://6aa97c5b9422e77b387ff09b.imgix.net/587812676_18101566096741745_510918387858464648_n.jpeg" alt="Kegiatan 6" loading="lazy" decoding="async" /></div></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="text-center mt-4">
+        <a class="teacher-more-button" href="<?= $escape($siteUrl('Galeri')) ?>">
+            <span class="teacher-more-label">Selengkapnya</span>
+            <span class="teacher-more-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14m-6-6 6 6-6 6" />
+                </svg>
+            </span>
+        </a>
+    </div>
+    </div>
+</section>
+
+<section id="admission" class="section reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Penerimaan Murid Baru</span>
+        <h2>Masuk sekolah dengan proses yang jelas dan ramah</h2>
+    </div>
+    <div class="row g-4 align-items-stretch">
+        <div class="col-lg-12 reveal">
+        <div class="admission-box">
+            <div class="row g-4">
+            <div class="col-md-6">
+                <div class="admission-stat">
+                <h3>Persyaratan</h3>
+                <ul>
+                    <li>Fotokopi Akta Kelahiran</li>
+                    <li>Kartu Keluarga</li>
+                    <li>Pas foto terbaru</li>
+                    <li>Surat keterangan sehat</li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="admission-stat">
+                <h3>Jadwal</h3>
+                <ul>
+                    <li>Gelombang 1: 1 - 15 Juli</li>
+                    <li>Gelombang 2: 16 - 31 Juli</li>
+                    <li>Seleksi: 2 - 5 Agustus</li>
+                    <li>Pengumuman: 7 Agustus</li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="admission-stat">
+                <h3>Alur</h3>
+                <ul>
+                    <li>Daftar online</li>
+                    <li>Verifikasi dokumen</li>
+                    <li>Wawancara & tes singkat</li>
+                    <li>Daftar ulang</li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="admission-stat">
+                <h3>Biaya</h3>
+                <ul>
+                    <li>Biaya pendaftaran: Rp 250.000</li>
+                    <li>SPP bulan pertama: Rp 350.000</li>
+                    <li>Seragam & perlengkapan: terpisah</li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-12 reveal">
+        <div class="faq-box">
+            <!-- <a class="btn btn-primary rounded-pill mb-4" href="tel:+62232878112">Hubungi panitia PPDB</a> -->
+            <h3>FAQ</h3>
+            <div class="accordion" id="admissionFaq">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-controls="faqOne" aria-expanded="true">
+                    Apakah ada tes masuk?
+                </button>
+                </h2>
+                <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Ya, ada tes singkat untuk menilai kesiapan belajar dan komunikasi anak.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-controls="faqTwo" aria-expanded="false">
+                    Apakah menerima calon siswa dari luar daerah?
+                </button>
+                </h2>
+                <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Tentu, kami terbuka untuk calon siswa dari berbagai wilayah sekitar Kuningan.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-controls="faqThree" aria-expanded="false">
+                    Bagaimana jika ingin konsultasi?
+                </button>
+                </h2>
+                <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Anda dapat datang langsung ke sekolah atau menghubungi panitia melalui kontak yang tersedia.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-controls="faqFour" aria-expanded="false">
+                    Kapan jadwal daftar ulang dilaksanakan?
+                </button>
+                </h2>
+                <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Daftar ulang dilaksanakan setelah calon siswa dinyatakan diterima dan jadwalnya akan diinformasikan oleh panitia.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive" aria-controls="faqFive" aria-expanded="false">
+                    Apakah tersedia program beasiswa?
+                </button>
+                </h2>
+                <div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Informasi program beasiswa tersedia melalui bagian administrasi dan dapat berubah sesuai kebijakan sekolah.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSix" aria-controls="faqSix" aria-expanded="false">
+                    Apakah sekolah menyediakan kegiatan ekstrakurikuler?
+                </button>
+                </h2>
+                <div id="faqSix" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Ya, tersedia berbagai kegiatan seperti tahfidz, pramuka, olahraga, seni, dan keterampilan.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeven" aria-controls="faqSeven" aria-expanded="false">
+                    Apakah orang tua dapat memantau perkembangan siswa?
+                </button>
+                </h2>
+                <div id="faqSeven" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Orang tua dapat memantau perkembangan siswa melalui komunikasi dengan wali kelas dan laporan belajar berkala.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEight" aria-controls="faqEight" aria-expanded="false">
+                    Apakah siswa mendapatkan seragam sekolah?
+                </button>
+                </h2>
+                <div id="faqEight" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Seragam dan perlengkapan sekolah dapat diperoleh melalui informasi pengadaan dari panitia setelah pendaftaran.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqNine" aria-controls="faqNine" aria-expanded="false">
+                    Bagaimana cara mengetahui informasi kegiatan sekolah?
+                </button>
+                </h2>
+                <div id="faqNine" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Informasi kegiatan akan dibagikan melalui pengumuman sekolah dan kanal komunikasi resmi yang tersedia.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTen" aria-controls="faqTen" aria-expanded="false">
+                    Apa yang perlu disiapkan sebelum hari pertama sekolah?
+                </button>
+                </h2>
+                <div id="faqTen" class="accordion-collapse collapse" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">Siapkan perlengkapan belajar, seragam, dokumen administrasi, dan semangat untuk memulai pengalaman belajar baru.</div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section id="videos" class="section video-section reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5">
+        <span class="eyebrow">Galeri Video</span>
+        <h2>Cerita dan kegiatan sekolah</h2>
+        <p class="text-secondary mt-3">Kenali keseharian siswa dan semangat belajar di MI Plus Annur melalui video.</p>
+    </div>
+    <div class="swiper videoSwiper" role="region" aria-label="Galeri video sekolah" aria-roledescription="karusel">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <article class="video-card">
+            <a class="video-play" href="https://www.youtube.com/watch?v=dpvPcsMVbWA" data-youtube-id="dpvPcsMVbWA" aria-label="Putar video: Dongeng Asal Usul Desa Maleber - Rania Aulia Ramadhani" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ytimg.com/vi/dpvPcsMVbWA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+                <span class="video-play-icon" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+            </a>
+            <div class="video-card-body">
+                <p>Rania Aulia Ramadhani</p>
+                <h3>Dongeng Asal Usul Desa Maleber</h3>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="video-card">
+            <a class="video-play" href="https://www.youtube.com/watch?v=vFPmgTjQXfk" data-youtube-id="vFPmgTjQXfk" aria-label="Putar video: Lomba Kreativitas Siswa RA/TK Kabupaten Kuningan 2026 - Kreativitas siswa" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ytimg.com/vi/vFPmgTjQXfk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+                <span class="video-play-icon" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+            </a>
+            <div class="video-card-body">
+                <p>Kreativitas siswa</p>
+                <h3>Lomba Kreativitas Siswa RA/TK Kabupaten Kuningan 2026</h3>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="video-card">
+            <a class="video-play" href="https://www.youtube.com/watch?v=eWGcjZTjGFY" data-youtube-id="eWGcjZTjGFY" aria-label="Putar video: Upacara Hari Santri Nasional 2022 - MI Plus An-Nur" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ytimg.com/vi/eWGcjZTjGFY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+                <span class="video-play-icon" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+            </a>
+            <div class="video-card-body">
+                <p>MI Plus An-Nur</p>
+                <h3>Upacara Hari Santri Nasional 2022</h3>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="video-card">
+            <a class="video-play" href="https://www.youtube.com/watch?v=fRHGKIcpUWw" data-youtube-id="fRHGKIcpUWw" aria-label="Putar video: Bersyukur Terhadap Nikmat Allah - Malka Firdaus Syarif" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ytimg.com/vi/fRHGKIcpUWw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+                <span class="video-play-icon" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+            </a>
+            <div class="video-card-body">
+                <p>Malka Firdaus Syarif</p>
+                <h3>Bersyukur Terhadap Nikmat Allah</h3>
+            </div>
+            </article>
+        </div>
+        <div class="swiper-slide">
+            <article class="video-card">
+            <a class="video-play" href="https://www.youtube.com/watch?v=CucCLXi7FCY" data-youtube-id="CucCLXi7FCY" aria-label="Putar video: Bersyukur Terhadap Nikmat Allah - Nida Dwi Hamidah" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ytimg.com/vi/CucCLXi7FCY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+                <span class="video-play-icon" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+            </a>
+            <div class="video-card-body">
+                <p>Nida Dwi Hamidah</p>
+                <h3>Bersyukur Terhadap Nikmat Allah</h3>
+            </div>
+            </article>
+        </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="text-center mt-4">
+        <a class="btn btn-outline-primary rounded-pill" href="https://www.youtube.com/@miplusan-nurkuningan2513" target="_blank" rel="noopener noreferrer"><i class="bi bi-youtube me-2" aria-hidden="true"></i>Kunjungi YouTube sekolah</a>
+    </div>
+    </div>
+</section>
+
+<section id="contact" class="section section-soft reveal">
+    <div class="container">
+    <div class="section-heading text-center mb-5 reveal">
+        <span class="eyebrow">Kontak & Alamat</span>
+        <h2>Hubungi kami untuk informasi lebih lanjut</h2>
+    </div>
+
+    <div class="row g-4 align-items-center">
+        <div class="col-lg-5 reveal">
+        <div class="contact-card">
+            <h3>MI Plus Annur Kuningan</h3>
+            <ul>
+            <li><i class="bi bi-geo-alt-fill"></i> Jl. Buahgmana No.234, Manggari, Kec. Lebakwangi, Kabupaten Kuningan, Jawa Barat 45574</li>
+            <li><i class="bi bi-telephone-fill"></i> <a href="tel:+62232878112">(0232) 878112</a></li>
+            <li><i class="bi bi-envelope-fill"></i> info@mi-plus-annur.sch.id</li>
+            <li><i class="bi bi-clock-fill"></i> Senin - Jumat, 07.30 - 15.00</li>
+            </ul>
+            <a class="btn btn-outline-primary rounded-pill mt-4" href="https://www.google.com/maps/place/MI+Plus+An-Nur+JARINGAN+FULL+EDGE/data=!4m2!3m1!1s0x0:0xc641e490f14b04b0" target="_blank" rel="noopener noreferrer">Buka petunjuk arah <i class="bi bi-arrow-up-right"></i></a>
+            <div class="contact-socials">
+            <h4 id="contactSocialsTitle">Ikuti kegiatan sekolah</h4>
+            <nav class="socials" aria-labelledby="contactSocialsTitle">
+                <a href="https://www.instagram.com/mi_plusannur/?hl=en" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram" aria-hidden="true"></i> Instagram<span class="visually-hidden"> (buka di tab baru)</span></a>
+                <a href="https://www.facebook.com/p/Mi-Plus-An-Nur-Full-Day-School-100057043797029/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook" aria-hidden="true"></i> Facebook<span class="visually-hidden"> (buka di tab baru)</span></a>
+                <a href="https://miplusannur.wordpress.com/" target="_blank" rel="noopener noreferrer"><i class="bi bi-wordpress" aria-hidden="true"></i> Blog / WordPress<span class="visually-hidden"> (buka di tab baru)</span></a>
+                <a href="https://www.youtube.com/@miplusan-nurkuningan2513" target="_blank" rel="noopener noreferrer"><i class="bi bi-youtube" aria-hidden="true"></i> YouTube<span class="visually-hidden"> (buka di tab baru)</span></a>
+                <a href="https://www.tiktok.com/@miplusannur" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok" aria-hidden="true"></i> TikTok<span class="visually-hidden"> (buka di tab baru)</span></a>
+            </nav>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-7 reveal">
+        <div class="map-wrapper">
+            <iframe
+            src="https://www.google.com/maps?q=MI%20Plus%20An-Nur%20Kuningan&output=embed"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Peta sekolah MI Plus Annur Kuningan"
+            ></iframe>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
