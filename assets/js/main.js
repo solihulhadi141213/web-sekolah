@@ -4,7 +4,8 @@
 
   // Di development, muat ulang stylesheet agar perubahan langsung terlihat.
   const refreshDevelopmentAssets = function () {
-    const endpoint = new URL('cache-mode.php', document.body.dataset.baseUrl || document.baseURI);
+    const siteBase = new URL(document.body.dataset.baseUrl || './', document.baseURI);
+    const endpoint = new URL('cache-mode.php', siteBase);
     endpoint.searchParams.set('_', String(Date.now()));
     fetch(endpoint, { cache: 'no-store', credentials: 'same-origin' })
       .then(function (response) { return response.ok ? response.json() : null; })

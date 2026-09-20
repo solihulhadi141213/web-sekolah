@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="theme-color" content="#f4f1fb" />
+        <title>Situs Sedang dalam Pemeliharaan</title>
+        <style>
+            /* Seluruh tampilan memakai CSS lokal dan font bawaan perangkat. */
+            * { box-sizing: border-box; }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                min-height: 100svh;
+                padding: 32px 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: #243450;
+                background:
+                    radial-gradient(ellipse at 8% 12%, #e0d8fb 0, transparent 48%),
+                    radial-gradient(ellipse at 95% 75%, #cfeeea 0, transparent 48%),
+                    radial-gradient(ellipse at 65% 0%, #fff0cf 0, transparent 38%),
+                    #f7f6fb;
+                font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+                line-height: 1.65;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 32px;
+                font-size: 13px;
+                font-weight: 750;
+                letter-spacing: .08em;
+            }
+
+            .brand-mark {
+                display: grid;
+                place-items: center;
+                width: 38px;
+                height: 38px;
+                border: 1px solid #ffffff;
+                border-radius: 13px;
+                background: #ffffffa6;
+                color: #6250a0;
+                font-size: 15px;
+                letter-spacing: 0;
+            }
+
+            main {
+                width: min(1120px, 100%);
+                margin: auto 0;
+                padding: clamp(26px, 4.5vw, 64px);
+                display: grid;
+                grid-template-columns: 1fr 1.1fr;
+                align-items: center;
+                gap: 36px;
+                border: 1px solid #ffffff;
+                border-radius: 36px;
+                background: #ffffffb8;
+                box-shadow: 0 28px 80px -35px #52477b40;
+            }
+
+            .status {
+                display: inline-flex;
+                align-items: center;
+                gap: 9px;
+                padding: 7px 13px;
+                border: 1px solid #eadbb9;
+                border-radius: 100px;
+                background: #fff7e5;
+                color: #7b5920;
+                font-size: 12px;
+                font-weight: 650;
+            }
+
+            .status::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: #ca8b27;
+                box-shadow: 0 0 0 4px #ca8b2715;
+            }
+
+            h1 {
+                margin: 24px 0 20px;
+                font-size: clamp(34px, 4.4vw, 54px);
+                line-height: 1.14;
+                letter-spacing: -.045em;
+                font-weight: 800;
+            }
+
+            h1 span { color: #7760b1; }
+            .description { margin: 0; color: #59667b; font-size: 16px; }
+            .invitation { margin: 18px 0 0; color: #59667b; font-size: 15px; }
+
+            .thank-you {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: 28px 0 0;
+                padding-top: 22px;
+                border-top: 1px solid #e4e4ef;
+                color: #665887;
+                font-size: 13px;
+                font-weight: 600;
+            }
+
+            .thank-you svg { flex-shrink: 0; }
+            .illustration { margin: 0; }
+            .illustration img { display: block; width: 100%; height: auto; }
+
+            footer {
+                margin-top: 30px;
+                text-align: center;
+                color: #647086;
+                font-size: 12px;
+                letter-spacing: .02em;
+            }
+
+            footer span { display: block; margin-top: 3px; color: #778196; }
+
+            @media (max-width: 760px) {
+                body { padding: 24px 16px; }
+                .brand { margin-bottom: 24px; font-size: 11px; }
+                main { grid-template-columns: 1fr; gap: 28px; border-radius: 26px; }
+                .illustration { grid-row: 1; max-width: 420px; margin: 0 auto; }
+                .content { text-align: center; }
+                h1 { margin-top: 20px; }
+                .thank-you { justify-content: center; }
+            }
+        </style>
+    </head>
+    <body data-home-url="./">
+        <header class="brand" aria-label="Informasi layanan">
+            <span class="brand-mark" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 11v6M12 7v1" />
+                </svg>
+            </span>
+            <span>INFORMASI LAYANAN</span>
+        </header>
+
+        <main aria-labelledby="maintenanceTitle">
+            <div class="content">
+                <div class="status">Pemeliharaan situs</div>
+                <h1 id="maintenanceTitle">Kami sedang<br /><span>berbenah sejenak.</span></h1>
+                <p class="description">
+                    Situs ini sedang dalam pemeliharaan agar informasi dan layanan
+                    dapat Anda akses dengan lebih nyaman.
+                </p>
+                <p class="invitation">
+                    Untuk sementara, halaman belum dapat dibuka.
+                    Silakan kunjungi kembali beberapa saat lagi.
+                </p>
+                <p class="thank-you">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" />
+                    </svg>
+                    Terima kasih sudah sabar menunggu.
+                </p>
+            </div>
+
+            <figure class="illustration">
+                <img
+                    src="assets/img/maintenance.png"
+                    alt="Ilustrasi dua siswa membantu memperbaiki situs sekolah."
+                    width="992"
+                    height="752"
+                    fetchpriority="high"
+                />
+            </figure>
+        </main>
+
+        <footer>
+            Kenyamanan Anda menjadi perhatian kami.
+            <span>Layanan akan tersedia kembali setelah pemeliharaan selesai.</span>
+            <span id="recoveryNotice" hidden>Halaman akan kembali ke beranda secara otomatis saat layanan pulih.</span>
+        </footer>
+
+        <script>
+            (function () {
+                'use strict';
+
+                // Ubah nilai ini untuk mengatur jeda pemeriksaan, dalam milidetik.
+                const checkInterval = 30000;
+                const requestTimeout = 10000;
+                const homeUrl = new URL(document.body.dataset.homeUrl, window.location.href);
+
+                document.getElementById('recoveryNotice').hidden = false;
+
+                async function checkRecovery() {
+                    const controller = new AbortController();
+                    const timeout = window.setTimeout(function () {
+                        controller.abort();
+                    }, requestTimeout);
+                    let recovered = false;
+
+                    try {
+                        // HEAD memeriksa status tanpa mengunduh seluruh isi beranda.
+                        const response = await fetch(homeUrl.href, {
+                            method: 'HEAD',
+                            cache: 'no-store',
+                            signal: controller.signal
+                        });
+
+                        if (response.status === 200) {
+                            recovered = true;
+                            window.location.replace(homeUrl.href);
+                        }
+                    } catch (error) {
+                        // Jika jaringan terputus, pertahankan halaman dan coba lagi.
+                    } finally {
+                        window.clearTimeout(timeout);
+
+                        // Tunggu permintaan selesai agar pemeriksaan tidak bertumpuk.
+                        if (!recovered) {
+                            window.setTimeout(checkRecovery, checkInterval);
+                        }
+                    }
+                }
+
+                window.setTimeout(checkRecovery, checkInterval);
+            })();
+        </script>
+    </body>
+</html>

@@ -232,7 +232,7 @@
         <div class="swiper-pagination"></div>
     </div>
     <div class="text-center mt-4">
-        <a class="teacher-more-button" href="<?php echo $config['base_url']; ?>/Guru">
+        <a class="teacher-more-button" href="<?= $escape($pageUrl('Guru')) ?>">
             <span class="teacher-more-label">Selengkapnya</span> <span class="teacher-more-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14m-6-6 6 6-6 6" />

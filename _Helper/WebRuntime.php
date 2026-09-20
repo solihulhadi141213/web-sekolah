@@ -1,6 +1,9 @@
 <?php
 // Hanya konfigurasi tampilan publik; tidak mengirim kredensial ke browser.
-$baseUrl = rtrim($config['base_url'], '/');
+// URL relatif terhadap root mengikuti domain/protokol yang sedang diakses.
+// SCRIPT_NAME tetap menunjuk entry point, termasuk saat memakai PATH_INFO.
+$scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '/index.php');
+$baseUrl = rtrim(str_replace('\\', '/', dirname($scriptName)), '/.');
 $isDevelopment = strtoupper($config['mode_environment'] ?? 'PRODUCTION') === 'DEVELOPMENT';
 $escape = static function ($value) {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');

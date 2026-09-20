@@ -3,6 +3,57 @@
     $config = require __DIR__ . '/_Config/config.php';
     require __DIR__ . '/_Helper/WebRuntime.php';
 
+    // Saat maintenance aktif, tampilkan pemberitahuan sebelum memuat halaman situs.
+    if (($config['is_maintenance'] ?? false) === true) {
+        http_response_code(503);
+        header('Content-Type: text/html; charset=utf-8');
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('X-Robots-Tag: noindex');
+
+        // Gunakan path instalasi agar ilustrasi mengikuti domain yang sedang diakses.
+        $maintenanceHomeUrl = $siteUrl();
+        $maintenanceImageUrl = $maintenanceHomeUrl . 'assets/img/maintenance.png';
+        $maintenanceHtml = file_get_contents(__DIR__ . '/Maintenance.html');
+
+        echo str_replace(
+            ['src="assets/img/maintenance.png"', 'data-home-url="./"'],
+            [
+                'src="' . htmlspecialchars($maintenanceImageUrl, ENT_QUOTES, 'UTF-8') . '"',
+                'data-home-url="' . htmlspecialchars($maintenanceHomeUrl, ENT_QUOTES, 'UTF-8') . '"',
+            ],
+            $maintenanceHtml
+        );
+        exit;
+    }
+
+    require_once __DIR__ . '/_Helper/RateLimiter.php';
+
+    // Semua route index.php berbagi kuota 10 request per detik dan 60 per menit per IP.
+    // Periksa sebelum routing, cache, dan output HTML, termasuk respons 304.
+    try {
+        $rateLimitConnection = new PDO(
+            'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'] . ';charset=utf8mb4',
+            $config['db_user'],
+            $config['db_pass'],
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false]
+        );
+        $rateLimiter = new RateLimiter($rateLimitConnection);
+        // Pisahkan key agar counter dan cleanup kedua window tidak saling memengaruhi.
+        $rateLimiter->check('index.php:second', 10, 1);
+        $rateLimiter->check('index.php', 60, 60);
+        unset($rateLimiter);
+        $rateLimitConnection = null;
+    } catch (PDOException $error) {
+        error_log('RateLimiter unavailable: ' . $error->getMessage());
+        http_response_code(503);
+        header('Content-Type: text/html; charset=utf-8');
+        header('Cache-Control: no-store');
+        header('Retry-After: 60');
+        echo '<!DOCTYPE html><html lang="id"><meta charset="utf-8"><title>Layanan tidak tersedia</title><body><h1>Layanan sementara tidak tersedia</h1><p>Silakan coba beberapa saat lagi.</p></body></html>';
+        exit;
+    }
+
+
     // Tentukan header cache dan halaman tujuan sebelum mengirim HTML.
     header('Content-Type: text/html; charset=utf-8');
     require __DIR__ . '/_Helper/CacheHeaders.php';
@@ -111,7 +162,7 @@
                     }
 
                     const script = document.createElement('script');
-                    const url = new URL(sources[index], document.body.dataset.baseUrl);
+                    const url = new URL(sources[index], document.baseURI);
 
                     if (attempt > 0) {
                         url.searchParams.set('retry', Date.now() + '-' + attempt);
@@ -145,5 +196,9 @@
                 loadScript(0, 0);
             })();
         </script>
+        <?php
+            // Routing JS Custome
+            require __DIR__ . '/_Partial/RoutingJs.php';
+        ?>
     </body>
 </html>
