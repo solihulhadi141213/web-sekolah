@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
 
 $config = require __DIR__ . '/../../_Config/config.php';
 require_once __DIR__ . '/../../_Helper/GlobalFunction.php';
+require_once __DIR__ . '/../../_Helper/Database.php';
 $userData = validateJWT($config);
 
 // Nama field request mengikuti kontrak API: short_order, kolom database: sort_order.
@@ -45,12 +46,7 @@ if (!isset($input->short_order) || !in_array($input->short_order, ['UP', 'DOWN']
 
 $pdo = null;
 try {
-    $pdo = new PDO(
-        'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'] . ';charset=utf8mb4',
-        $config['db_user'],
-        $config['db_pass'],
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $pdo = Database::getConnection();
     $pdo->beginTransaction();
 
     // Kunci urutan secara konsisten agar permintaan pertukaran tidak saling menimpa.

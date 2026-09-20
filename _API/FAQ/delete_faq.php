@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
 
 $config = require __DIR__ . '/../../_Config/config.php';
 require_once __DIR__ . '/../../_Helper/GlobalFunction.php';
+require_once __DIR__ . '/../../_Helper/Database.php';
 $userData = validateJWT($config);
 
 // ID diambil dari query string: delete_faq.php?id=11
@@ -58,15 +59,7 @@ if ($id === false) {
 }
 
 try {
-    $pdo = new PDO(
-        'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'] . ';charset=utf8mb4',
-        $config['db_user'],
-        $config['db_pass'],
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_EMULATE_PREPARES => false
-        ]
-    );
+    $pdo = Database::getConnection();
 
     $stmt = $pdo->prepare('DELETE FROM faqs WHERE id = :id');
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);

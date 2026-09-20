@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 17, 2026 at 07:59 PM
+-- Generation Time: Sep 20, 2026 at 08:10 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.2.26
 
@@ -30,10 +30,9 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `api_credentials`;
 CREATE TABLE IF NOT EXISTS `api_credentials` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary key kredensial',
-  `app_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nama aplikasi klien yang menggunakan API (cth: Aplikasi PPDB Android)',
+  `app_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nama aplikasi klien yang menggunakan API (cth: CMS Production)',
   `api_key` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT 'Kunci publik unik untuk identifikasi klien (Header: x-api-key)',
-  `api_secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT 'Kunci rahasia (sebaiknya di-hash) untuk validasi otentikasi ketat',
-  `permissions` json DEFAULT NULL COMMENT 'Daftar hak akses dalam format JSON (cth: ["read_article", "write_gallery"])',
+  `api_secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT 'Kunci rahasia (di-hash) untuk validasi otentikasi ketat',
   `is_active` tinyint(1) DEFAULT '1' COMMENT 'Saklar (Toggle) untuk mematikan akses API sewaktu-waktu jika diperlukan',
   `last_used_at` timestamp NULL DEFAULT NULL COMMENT 'Mencatat waktu terakhir klien melakukan request ke API',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Waktu kredensial ini diterbitkan',
@@ -50,17 +49,17 @@ CREATE TABLE IF NOT EXISTS `api_credentials` (
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Judul artikel',
   `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'URL ramah SEO (cth: jadwal-kegiatan-tahfidz)',
   `category_tag` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Sesuai tag di HTML: Berita, Agenda, Pengumuman',
-  `summary` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Teks singkat untuk tampilan landing page',
-  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Isi artikel penuh (HTML/Rich Text)',
-  `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Gambar sampul artikel',
-  `status` enum('published','draft') DEFAULT 'published',
+  `summary` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Teks singkat untuk tampilan landing page (preview)',
+  `id_file_manager` int UNSIGNED DEFAULT NULL COMMENT 'Gambar sampul artikel',
+  `status` enum('published','draft') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'published' COMMENT 'Status artikel di publis atau tidak',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `slug` (`slug`)
+  UNIQUE KEY `slug` (`slug`),
+  KEY `articles_to_file_manager` (`id_file_manager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -73,11 +72,13 @@ DROP TABLE IF EXISTS `article_contents`;
 CREATE TABLE IF NOT EXISTS `article_contents` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary key blok konten',
   `article_id` int UNSIGNED NOT NULL COMMENT 'ID artikel pemilik blok ini',
-  `block_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Jenis blok: paragraph, image, video_embed, list, alert, quote',
-  `content_data` json NOT NULL COMMENT 'Isi blok dalam format JSON agar dinamis mengikuti tipe blok',
+  `block_type` enum('Paragraph','List','Alert','Quote','Image URL','Image File','Video File','Video Embed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Jenis blok: paragraph, image, video_embed, list, alert, quote',
+  `id_file_manager` int UNSIGNED DEFAULT NULL COMMENT 'Hanya Apabila konten adalah image file atau Video File',
+  `content_metadata` json NOT NULL COMMENT 'Bagaimana conten ditampilkan pada halaman html',
   `sort_order` int UNSIGNED DEFAULT '0' COMMENT 'Urutan tampil blok dari atas ke bawah',
   PRIMARY KEY (`id`),
-  KEY `article_id` (`article_id`)
+  KEY `article_id` (`article_id`),
+  KEY `article_contents_to_filemanager` (`id_file_manager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabel Child: Menyusun isi artikel berupa susunan blok dinamis';
 
 -- --------------------------------------------------------
@@ -105,9 +106,10 @@ CREATE TABLE IF NOT EXISTS `facilities` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary key fasilitas',
   `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nama fasilitas (cth: Laboratorium, Perpustakaan)',
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Deskripsi singkat mengenai fungsi fasilitas',
-  `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Path atau URL foto fasilitas',
+  `id_file_manager` int UNSIGNED DEFAULT NULL COMMENT 'Foto Fasilitas',
   `sort_order` int DEFAULT '0' COMMENT 'Angka urutan tampil di slider fasilitas',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `facilities_to_file_manager` (`id_file_manager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabel sarana dan prasarana sekolah';
 
 -- --------------------------------------------------------
@@ -121,9 +123,24 @@ CREATE TABLE IF NOT EXISTS `faqs` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary key FAQ',
   `question` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Pertanyaan yang sering diajukan',
   `answer` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Jawaban resmi dari pihak sekolah',
-  `sort_order` int DEFAULT '0' COMMENT 'Angka urutan tampil akordeon FAQ',
+  `sort_order` int UNSIGNED DEFAULT '0' COMMENT 'Angka urutan tampil akordeon FAQ',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabel tanya jawab untuk seksi PPDB';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_manager`
+--
+
+DROP TABLE IF EXISTS `file_manager`;
+CREATE TABLE IF NOT EXISTS `file_manager` (
+  `id_file_manager` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID File Manager',
+  `file_source` enum('Local Directory','External Link','Cloudinary','Imagekit') NOT NULL COMMENT 'Sumber file yang digunakan',
+  `file_metadata` json NOT NULL COMMENT 'Metadata Dokumentasi (Image-Metadata-Explanation.md)',
+  `creat_at` datetime NOT NULL COMMENT 'UTC',
+  PRIMARY KEY (`id_file_manager`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Mengelola file secara terpusat';
 
 -- --------------------------------------------------------
 
@@ -134,10 +151,11 @@ CREATE TABLE IF NOT EXISTS `faqs` (
 DROP TABLE IF EXISTS `galleries`;
 CREATE TABLE IF NOT EXISTS `galleries` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary key foto galeri',
-  `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Path atau URL gambar penuh kegiatan',
+  `id_file_manager` int UNSIGNED DEFAULT NULL COMMENT 'File Gambar',
   `caption` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Teks alternatif (alt) atau keterangan foto',
   `sort_order` int DEFAULT '0' COMMENT 'Angka urutan tampil di grid/slider galeri',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `galleries_to_file_manager` (`id_file_manager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabel kumpulan foto dokumentasi kegiatan sekolah';
 
 -- --------------------------------------------------------
@@ -151,11 +169,51 @@ CREATE TABLE IF NOT EXISTS `hero_slides` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary key slide hero',
   `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Judul besar pada slide (cth: KEDISIPLINAN)',
   `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Teks sub-judul pendukung di bawah judul besar',
-  `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Path atau URL gambar latar belakang slide',
+  `id_file_manager` int UNSIGNED DEFAULT NULL COMMENT 'File Gambar',
   `sort_order` int DEFAULT '0' COMMENT 'Angka urutan tampil (angka terkecil tampil duluan)',
   `is_active` tinyint(1) DEFAULT '1' COMMENT 'Status aktif/tidaknya slide untuk ditampilkan',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `hero_slides_to_file_manager` (`id_file_manager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabel untuk mengelola slide utama (Hero Section)';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rate_limit`
+--
+
+DROP TABLE IF EXISTS `rate_limit`;
+CREATE TABLE IF NOT EXISTS `rate_limit` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(45) NOT NULL,
+  `endpoint` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `request_time` int UNSIGNED NOT NULL,
+  `hit_count` smallint UNSIGNED NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_rate_limit` (`ip_address`,`endpoint`,`request_time`),
+  KEY `idx_cleanup` (`request_time`),
+  KEY `idx_endpoint` (`endpoint`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `siswa_baru`
+--
+
+DROP TABLE IF EXISTS `siswa_baru`;
+CREATE TABLE IF NOT EXISTS `siswa_baru` (
+  `id_siswa_baru` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nama_siswa` varchar(2555) NOT NULL,
+  `gender` enum('Male','Female') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `tempat_lahir` varchar(255) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `alamat_tinggal` text NOT NULL,
+  `nama_wali` varchar(255) NOT NULL,
+  `kontak_wali` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  PRIMARY KEY (`id_siswa_baru`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -197,13 +255,14 @@ CREATE TABLE IF NOT EXISTS `tags` (
 
 DROP TABLE IF EXISTS `teachers`;
 CREATE TABLE IF NOT EXISTS `teachers` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary key data guru',
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary key data guru',
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nama lengkap guru beserta gelar',
   `role` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Jabatan atau peran (cth: Wali Kelas 1, Guru PJOK)',
   `subject` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Mata pelajaran khusus atau fokus utama pendidik',
-  `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Path atau URL pas foto guru',
-  `sort_order` int DEFAULT '0' COMMENT 'Angka urutan tampil di slider guru',
-  PRIMARY KEY (`id`)
+  `id_file_manager` int UNSIGNED DEFAULT NULL COMMENT 'File Foto',
+  `sort_order` int UNSIGNED DEFAULT '1' COMMENT 'Angka urutan tampil di slider guru',
+  PRIMARY KEY (`id`),
+  KEY `teachers_to_file_manager` (`id_file_manager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabel profil tenaga pendidik';
 
 -- --------------------------------------------------------
@@ -217,9 +276,10 @@ CREATE TABLE IF NOT EXISTS `testimonials` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary key testimonial',
   `parent_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nama orang tua yang memberikan ulasan',
   `quote` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Isi teks testimonial atau ulasan',
-  `image_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Path atau URL foto profil orang tua (opsional)',
+  `id_file_manager` int UNSIGNED DEFAULT NULL COMMENT 'Foto Testimonial',
   `sort_order` int DEFAULT '0' COMMENT 'Angka urutan tampil di slider testimonial',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `testimonials_to_file_manager` (`id_file_manager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabel ulasan dan testimoni orang tua siswa';
 
 -- --------------------------------------------------------
@@ -247,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `videos` (
 DROP TABLE IF EXISTS `web_settings`;
 CREATE TABLE IF NOT EXISTS `web_settings` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `setting_key` varchar(50) NOT NULL,
+  `setting_key` enum('site_title','site_description','site_theme_color','base_url','contact_phone','contact_whatsapp','contact_email','contact_address','contact_map_url','school_hours','social_instagram','social_facebook','social_blog','social_youtube','social_tiktok','stat_alumni','stat_students','stat_teachers','stat_achievements','kepsek_name','kepsek_title','kepsek_quote','ppdb_registration_fee','ppdb_monthly_spp') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `setting_value` text,
   `description` varchar(255) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -260,10 +320,17 @@ CREATE TABLE IF NOT EXISTS `web_settings` (
 --
 
 --
+-- Constraints for table `articles`
+--
+ALTER TABLE `articles`
+  ADD CONSTRAINT `articles_to_file_manager` FOREIGN KEY (`id_file_manager`) REFERENCES `file_manager` (`id_file_manager`) ON DELETE SET NULL ON UPDATE RESTRICT;
+
+--
 -- Constraints for table `article_contents`
 --
 ALTER TABLE `article_contents`
-  ADD CONSTRAINT `article_contents_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `article_contents_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `article_contents_to_filemanager` FOREIGN KEY (`id_file_manager`) REFERENCES `file_manager` (`id_file_manager`) ON DELETE SET NULL ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `article_tag_map`
@@ -271,6 +338,36 @@ ALTER TABLE `article_contents`
 ALTER TABLE `article_tag_map`
   ADD CONSTRAINT `article_tag_map_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `article_tag_map_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `facilities`
+--
+ALTER TABLE `facilities`
+  ADD CONSTRAINT `facilities_to_file_manager` FOREIGN KEY (`id_file_manager`) REFERENCES `file_manager` (`id_file_manager`) ON DELETE SET NULL ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `galleries`
+--
+ALTER TABLE `galleries`
+  ADD CONSTRAINT `galleries_to_file_manager` FOREIGN KEY (`id_file_manager`) REFERENCES `file_manager` (`id_file_manager`) ON DELETE SET NULL ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `hero_slides`
+--
+ALTER TABLE `hero_slides`
+  ADD CONSTRAINT `hero_slides_to_file_manager` FOREIGN KEY (`id_file_manager`) REFERENCES `file_manager` (`id_file_manager`) ON DELETE SET NULL ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `teachers`
+--
+ALTER TABLE `teachers`
+  ADD CONSTRAINT `teachers_to_file_manager` FOREIGN KEY (`id_file_manager`) REFERENCES `file_manager` (`id_file_manager`) ON DELETE SET NULL ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD CONSTRAINT `testimonials_to_file_manager` FOREIGN KEY (`id_file_manager`) REFERENCES `file_manager` (`id_file_manager`) ON DELETE SET NULL ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

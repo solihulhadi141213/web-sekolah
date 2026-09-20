@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $config = require __DIR__ . '/../../_Config/config.php';
 require_once __DIR__ . '/../../_Helper/GlobalFunction.php';
+require_once __DIR__ . '/../../_Helper/Database.php';
 $userData = validateJWT($config);
 
 // Contoh body JSON: {"question":"Apakah ada biaya lain?","answer":"Tidak ada"}
@@ -51,12 +52,7 @@ $question = trim($input->question);
 $answer = trim($input->answer);
 
 try {
-    $pdo = new PDO(
-        'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'] . ';charset=utf8mb4',
-        $config['db_user'],
-        $config['db_pass'],
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $pdo = Database::getConnection();
 
     // FAQ pertama memakai urutan 1; urutan berikutnya mengikuti nilai terbesar.
     $sortOrder = (int) $pdo->query('SELECT COALESCE(MAX(sort_order), 0) + 1 FROM faqs')->fetchColumn();

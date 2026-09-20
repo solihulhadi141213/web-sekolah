@@ -18,12 +18,13 @@
     // 1. Panggil file konfigurasi dan autoloader Composer dari folder utama (naik dua tingkat)
     $config = require __DIR__ . '/../../_Config/config.php';
     require __DIR__ . '/../../vendor/autoload.php';
+    require_once __DIR__ . '/../../_Helper/Database.php';
 
     use Firebase\JWT\JWT;
 
     // 2. Ambil data JSON atau Form-data yang dikirim oleh klien (Aplikasi/Mobile)
-    $input = json_decode(file_get_contents("php://input"), true);
-    $api_key = $input['api_key'] ?? $_POST['api_key'] ?? '';
+    $input      = json_decode(file_get_contents("php://input"), true);
+    $api_key    = $input['api_key'] ?? $_POST['api_key'] ?? '';
     $api_secret = $input['api_secret'] ?? $_POST['api_secret'] ?? '';
 
     // Validasi input kosong
@@ -37,16 +38,11 @@
     }
 
     try {
-        // 3. Buat koneksi database PDO
-        $pdo = new PDO(
-            "mysql:host=" . $config['db_host'] . ";dbname=" . $config['db_name'] . ";charset=utf8mb4",
-            $config['db_user'],
-            $config['db_pass']
-        );
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // 3. Ambil instance PDO bersama dari helper.
+        $pdo = Database::getConnection();
 
         // 4. Cari api_key di database dan pastikan statusnya aktif (is_active = 1)
-        $stmt = $pdo->prepare("SELECT * FROM api_credentials WHERE api_key = :api_key AND is_active = 1");
+        $stmt = $pdo->prepare("SELECT id, app_name, api_secret FROM api_credentials WHERE api_key = :api_key AND is_active = 1 LIMIT 1");
         $stmt->execute([':api_key' => $api_key]);
         $client = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -78,8 +74,7 @@
             'iat'           => $issuedAt,
             'exp'           => $expiration,
             'credential_id' => $client['id'],
-            'app_name'      => $client['app_name'],
-            'permissions'   => json_decode($client['permissions'])
+            'app_name'      => $client['app_name']
         ];
 
         // Encode payload menjadi string JWT menggunakan algoritma HS256

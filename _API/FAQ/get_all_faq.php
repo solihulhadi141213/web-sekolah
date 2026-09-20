@@ -27,16 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 // Gunakan konfigurasi dan validasi JWT yang sama dengan endpoint pengaturan.
 $config = require __DIR__ . '/../../_Config/config.php';
 require_once __DIR__ . '/../../_Helper/GlobalFunction.php';
+require_once __DIR__ . '/../../_Helper/Database.php';
 $userData = validateJWT($config);
 
 try {
     // Hubungkan database setelah token berhasil divalidasi.
-    $pdo = new PDO(
-        'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'] . ';charset=utf8mb4',
-        $config['db_user'],
-        $config['db_pass'],
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+    $pdo = Database::getConnection();
 
     // Urutkan FAQ berdasarkan urutan tampil, lalu ID agar hasil tetap konsisten.
     $stmt = $pdo->query('SELECT id, question, answer, sort_order FROM faqs ORDER BY sort_order ASC, id ASC');
