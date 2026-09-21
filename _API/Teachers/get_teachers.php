@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 
 $config = require __DIR__ . '/../../_Config/config.php';
 require_once __DIR__ . '/../../_Helper/GlobalFunction.php';
+require_once __DIR__ . '/../../_Helper/Database.php';
 $userData = validateJWT($config);
 
 // Nama short_by mengikuti parameter API yang diminta.
@@ -95,10 +96,10 @@ if ($keyword !== '') {
     // Cari sebagian teks di empat kolom; %, _, dan ! diperlakukan literal.
     $search = '%' . strtr($keyword, ['!' => '!!', '%' => '!%', '_' => '!_']) . '%';
     $where = " WHERE (
-        CAST(`id` AS CHAR) LIKE :keyword_id ESCAPE '!'
-        OR `name` LIKE :keyword_name ESCAPE '!'
-        OR `role` LIKE :keyword_role ESCAPE '!'
-        OR `subject` LIKE :keyword_subject ESCAPE '!'
+        CAST(t.`id` AS CHAR) LIKE :keyword_id ESCAPE '!'
+        OR t.`name` LIKE :keyword_name ESCAPE '!'
+        OR t.`role` LIKE :keyword_role ESCAPE '!'
+        OR t.`subject` LIKE :keyword_subject ESCAPE '!'
     )";
     $bindings = [
         ':keyword_id' => $search,
@@ -109,31 +110,22 @@ if ($keyword !== '') {
 }
 
 try {
-    $pdo = new PDO(
-        'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'] . ';charset=utf8mb4',
-        $config['db_user'],
-        $config['db_pass'],
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false
-        ]
-    );
+    $pdo = Database::getConnection();
 
     // Total hanya menghitung data yang sesuai pencarian.
-    $countStmt = $pdo->prepare('SELECT COUNT(*) FROM `teachers`' . $where);
+    $countStmt = $pdo->prepare('SELECT COUNT(*) FROM `teachers` t' . $where);
     $countStmt->execute($bindings);
     $total = (int) $countStmt->fetchColumn();
 
     // ID menjadi pengurutan tambahan agar urutan nilai yang sama konsisten.
-    $orderSql = '`' . $orderBy . '` ' . $shortBy;
+    $orderSql = 't.`' . $orderBy . '` ' . $shortBy;
     if ($orderBy !== 'id') {
-        $orderSql .= ', `id` ' . $shortBy;
+        $orderSql .= ', t.`id` ' . $shortBy;
     }
 
     $stmt = $pdo->prepare(
-        'SELECT `id`, `name`, `role`, `subject`, `image_url`, `sort_order`
-         FROM `teachers`' . $where . '
+        'SELECT t.`id`, t.`name`, t.`role`, t.`subject`, t.`id_file_manager`, t.`sort_order`, f.`file_source`, f.`file_metadata`
+         FROM `teachers` t LEFT JOIN `file_manager` f ON f.`id_file_manager` = t.`id_file_manager`' . $where . '
          ORDER BY ' . $orderSql . ' LIMIT :limit OFFSET :offset'
     );
     foreach ($bindings as $key => $value) {
@@ -144,10 +136,43 @@ try {
     $stmt->execute();
     $teachers = $stmt->fetchAll();
 
+    // Path relatif root mengikuti domain saat ini, bukan hostname pada base_url konfigurasi.
+    $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '/_API/Teachers/get_teachers.php');
+    $basePath = rtrim(str_replace('\\', '/', dirname($scriptName, 3)), '/.');
+
     foreach ($teachers as &$teacher) {
         $teacher['id'] = (int) $teacher['id'];
+        $teacher['id_file_manager'] = $teacher['id_file_manager'] === null
+            ? null : (int) $teacher['id_file_manager'];
         $teacher['sort_order'] = $teacher['sort_order'] === null
             ? null : (int) $teacher['sort_order'];
+
+        // Kembalikan metadata sebagai objek JSON, bukan string JSON berlapis.
+        $metadata = $teacher['file_metadata'] === null ? null : json_decode($teacher['file_metadata']);
+        $teacher['file_metadata'] = is_object($metadata) ? $metadata : null;
+        $teacher['image_url'] = null;
+        if (!is_object($metadata)) {
+            continue;
+        }
+
+        if ($teacher['file_source'] === 'Local Directory') {
+            $fileName = $metadata->file_name ?? null;
+            if (is_string($fileName) && $fileName !== '' && $fileName !== '.' && $fileName !== '..'
+                && strpbrk($fileName, "/\\\0") === false) {
+                $teacher['image_url'] = $basePath . '/assets/img/local_directory/' . rawurlencode($fileName);
+            }
+        } else {
+            $url = null;
+            if ($teacher['file_source'] === 'External Link') {
+                $url = $metadata->file_url ?? null;
+            } elseif (in_array($teacher['file_source'], ['Cloudinary', 'Imagekit'], true)) {
+                $url = $metadata->url ?? null;
+            }
+            if (is_string($url) && filter_var($url, FILTER_VALIDATE_URL)
+                && in_array(strtolower(parse_url($url, PHP_URL_SCHEME) ?? ''), ['http', 'https'], true)) {
+                $teacher['image_url'] = $url;
+            }
+        }
     }
     unset($teacher);
 
