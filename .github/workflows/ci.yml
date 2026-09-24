@@ -88,13 +88,12 @@ jobs:
           $appName = 'Aplikasi Pengujian CI';
           $apiKey = 'ci-only-api-key';
           $apiSecret = password_hash('ci-only-api-secret', PASSWORD_DEFAULT);
-          $permissions = json_encode(['read_article']);
           $stmt = $db->prepare(
               'INSERT INTO api_credentials
-               (app_name, api_key, api_secret, permissions, is_active)
-               VALUES (?, ?, ?, ?, 1)'
+               (app_name, api_key, api_secret, is_active)
+               VALUES (?, ?, ?, 1)'
           );
-          $stmt->bind_param('ssss', $appName, $apiKey, $apiSecret, $permissions);
+          $stmt->bind_param('sss', $appName, $apiKey, $apiSecret);
           $stmt->execute();
           echo "Record API contoh berhasil dibuat.\n";
           PHP

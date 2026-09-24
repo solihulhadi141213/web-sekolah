@@ -66,7 +66,6 @@
 
         echo "LOLOS: Ditemukan $active record kredensial API aktif dan terisi.\n";
         // Tes ini tidak memanggil endpoint API atau membuktikan autentikasi berhasil.
-        // permissions boleh NULL sesuai skema; tidak dipaksakan sebagai aturan baru.
         exit(0);
     } catch (Throwable $error) {
         // Jangan cetak pesan SQL mentah: dapat memuat konfigurasi atau data sensitif.

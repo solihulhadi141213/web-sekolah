@@ -44,7 +44,10 @@ function connectTestDatabase(): mysqli
 /** Abaikan display width integer, tetapi tetap periksa unsigned dan panjang varchar. */
 function normalizeType(string $type): string
 {
-    return preg_replace('/\b(tinyint|smallint|mediumint|int|bigint)\(\d+\)/i', '$1', strtolower($type));
+    if (preg_match('/^(tinyint|smallint|mediumint|int|bigint)(?:\(\d+\))?( unsigned)?$/i', trim($type), $match)) {
+        return strtolower($match[1] . ($match[2] ?? ''));
+    }
+    return trim($type);
 }
 
 try {
@@ -58,146 +61,178 @@ try {
 {
   "api_credentials": {
     "columns": {
-      "id": {"type": "int unsigned", "nullable": "NO", "auto_increment": true},
-      "app_name": {"type": "varchar(100)", "nullable": "NO", "auto_increment": false},
-      "api_key": {"type": "varchar(64)", "nullable": "NO", "auto_increment": false},
-      "api_secret": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "permissions": {"type": "json", "nullable": "YES", "auto_increment": false},
-      "is_active": {"type": "tinyint(1)", "nullable": "YES", "auto_increment": false},
-      "last_used_at": {"type": "timestamp", "nullable": "YES", "auto_increment": false},
-      "created_at": {"type": "timestamp", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":true},
+      "app_name": {"type":"varchar(100)","nullable":"NO","auto_increment":false},
+      "api_key": {"type":"varchar(64)","nullable":"NO","auto_increment":false},
+      "api_secret": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "is_active": {"type":"tinyint(1)","nullable":"YES","auto_increment":false},
+      "last_used_at": {"type":"timestamp","nullable":"YES","auto_increment":false},
+      "created_at": {"type":"timestamp","nullable":"YES","auto_increment":false}
     },
-    "unique_keys": [["id"], ["api_key"]]
+    "unique_keys": [["id"],["api_key"]]
   },
   "articles": {
     "columns": {
-      "id": {"type": "int unsigned", "nullable": "NO", "auto_increment": true},
-      "title": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "slug": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "category_tag": {"type": "varchar(50)", "nullable": "NO", "auto_increment": false},
-      "summary": {"type": "varchar(500)", "nullable": "NO", "auto_increment": false},
-      "content": {"type": "longtext", "nullable": "NO", "auto_increment": false},
-      "image_url": {"type": "varchar(255)", "nullable": "YES", "auto_increment": false},
-      "status": {"type": "enum('published','draft')", "nullable": "YES", "auto_increment": false},
-      "created_at": {"type": "timestamp", "nullable": "YES", "auto_increment": false},
-      "updated_at": {"type": "timestamp", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":true},
+      "title": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "slug": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "category_tag": {"type":"varchar(50)","nullable":"NO","auto_increment":false},
+      "summary": {"type":"varchar(500)","nullable":"NO","auto_increment":false},
+      "id_file_manager": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false},
+      "status": {"type":"enum('published','draft')","nullable":"YES","auto_increment":false},
+      "created_at": {"type":"timestamp","nullable":"YES","auto_increment":false},
+      "updated_at": {"type":"timestamp","nullable":"YES","auto_increment":false}
     },
-    "unique_keys": [["id"], ["slug"]]
+    "unique_keys": [["id"],["slug"]]
   },
   "article_contents": {
     "columns": {
-      "id": {"type": "int unsigned", "nullable": "NO", "auto_increment": true},
-      "article_id": {"type": "int unsigned", "nullable": "NO", "auto_increment": false},
-      "block_type": {"type": "varchar(50)", "nullable": "NO", "auto_increment": false},
-      "content_data": {"type": "json", "nullable": "NO", "auto_increment": false},
-      "sort_order": {"type": "int unsigned", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":true},
+      "article_id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":false},
+      "block_type": {"type":"enum('Paragraph','List','Alert','Quote','Image URL','Image File','Video File','Video Embed')","nullable":"NO","auto_increment":false},
+      "id_file_manager": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false},
+      "content_metadata": {"type":"json","nullable":"NO","auto_increment":false},
+      "sort_order": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
   "article_tag_map": {
     "columns": {
-      "article_id": {"type": "int unsigned", "nullable": "NO", "auto_increment": false},
-      "tag_id": {"type": "int unsigned", "nullable": "NO", "auto_increment": false}
+      "article_id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":false},
+      "tag_id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":false}
     },
-    "unique_keys": [["article_id", "tag_id"]]
+    "unique_keys": [["article_id","tag_id"]]
   },
   "facilities": {
     "columns": {
-      "id": {"type": "int", "nullable": "NO", "auto_increment": true},
-      "title": {"type": "varchar(100)", "nullable": "NO", "auto_increment": false},
-      "description": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "image_url": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "sort_order": {"type": "int", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int","nullable":"NO","auto_increment":true},
+      "title": {"type":"varchar(100)","nullable":"NO","auto_increment":false},
+      "description": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "id_file_manager": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false},
+      "sort_order": {"type":"int","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
   "faqs": {
     "columns": {
-      "id": {"type": "int", "nullable": "NO", "auto_increment": true},
-      "question": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "answer": {"type": "text", "nullable": "NO", "auto_increment": false},
-      "sort_order": {"type": "int", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int","nullable":"NO","auto_increment":true},
+      "question": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "answer": {"type":"text","nullable":"NO","auto_increment":false},
+      "sort_order": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
+  "file_manager": {
+    "columns": {
+      "id_file_manager": {"type":"int UNSIGNED","nullable":"NO","auto_increment":true},
+      "file_source": {"type":"enum('Local Directory','External Link','Cloudinary','Imagekit')","nullable":"NO","auto_increment":false},
+      "file_metadata": {"type":"json","nullable":"NO","auto_increment":false},
+      "creat_at": {"type":"datetime","nullable":"NO","auto_increment":false}
+    },
+    "unique_keys": [["id_file_manager"]]
+  },
   "galleries": {
     "columns": {
-      "id": {"type": "int", "nullable": "NO", "auto_increment": true},
-      "image_url": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "caption": {"type": "varchar(255)", "nullable": "YES", "auto_increment": false},
-      "sort_order": {"type": "int", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int","nullable":"NO","auto_increment":true},
+      "id_file_manager": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false},
+      "caption": {"type":"varchar(255)","nullable":"YES","auto_increment":false},
+      "sort_order": {"type":"int","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
   "hero_slides": {
     "columns": {
-      "id": {"type": "int", "nullable": "NO", "auto_increment": true},
-      "title": {"type": "varchar(100)", "nullable": "NO", "auto_increment": false},
-      "subtitle": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "image_url": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "sort_order": {"type": "int", "nullable": "YES", "auto_increment": false},
-      "is_active": {"type": "tinyint(1)", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int","nullable":"NO","auto_increment":true},
+      "title": {"type":"varchar(100)","nullable":"NO","auto_increment":false},
+      "subtitle": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "id_file_manager": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false},
+      "sort_order": {"type":"int","nullable":"YES","auto_increment":false},
+      "is_active": {"type":"tinyint(1)","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
+  "rate_limit": {
+    "columns": {
+      "id": {"type":"bigint UNSIGNED","nullable":"NO","auto_increment":true},
+      "ip_address": {"type":"varchar(45)","nullable":"NO","auto_increment":false},
+      "endpoint": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "request_time": {"type":"int UNSIGNED","nullable":"NO","auto_increment":false},
+      "hit_count": {"type":"smallint UNSIGNED","nullable":"NO","auto_increment":false},
+      "created_at": {"type":"timestamp","nullable":"NO","auto_increment":false}
+    },
+    "unique_keys": [["id"],["ip_address","endpoint","request_time"]]
+  },
+  "siswa_baru": {
+    "columns": {
+      "id_siswa_baru": {"type":"int UNSIGNED","nullable":"NO","auto_increment":true},
+      "nama_siswa": {"type":"varchar(2555)","nullable":"NO","auto_increment":false},
+      "gender": {"type":"enum('Male','Female')","nullable":"NO","auto_increment":false},
+      "tempat_lahir": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "tanggal_lahir": {"type":"date","nullable":"NO","auto_increment":false},
+      "alamat_tinggal": {"type":"text","nullable":"NO","auto_increment":false},
+      "nama_wali": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "kontak_wali": {"type":"varchar(20)","nullable":"NO","auto_increment":false}
+    },
+    "unique_keys": [["id_siswa_baru"]]
+  },
   "student_activities": {
     "columns": {
-      "id": {"type": "int", "nullable": "NO", "auto_increment": true},
-      "category": {"type": "enum('organisasi','ekstrakurikuler','prestasi')", "nullable": "NO", "auto_increment": false},
-      "title": {"type": "varchar(100)", "nullable": "NO", "auto_increment": false},
-      "description": {"type": "text", "nullable": "NO", "auto_increment": false},
-      "sort_order": {"type": "int", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int","nullable":"NO","auto_increment":true},
+      "category": {"type":"enum('organisasi','ekstrakurikuler','prestasi')","nullable":"NO","auto_increment":false},
+      "title": {"type":"varchar(100)","nullable":"NO","auto_increment":false},
+      "description": {"type":"text","nullable":"NO","auto_increment":false},
+      "sort_order": {"type":"int","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
   "tags": {
     "columns": {
-      "id": {"type": "int unsigned", "nullable": "NO", "auto_increment": true},
-      "name": {"type": "varchar(50)", "nullable": "NO", "auto_increment": false},
-      "slug": {"type": "varchar(50)", "nullable": "NO", "auto_increment": false}
+      "id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":true},
+      "name": {"type":"varchar(50)","nullable":"NO","auto_increment":false},
+      "slug": {"type":"varchar(50)","nullable":"NO","auto_increment":false}
     },
-    "unique_keys": [["id"], ["name"], ["slug"]]
+    "unique_keys": [["id"],["name"],["slug"]]
   },
   "teachers": {
     "columns": {
-      "id": {"type": "int", "nullable": "NO", "auto_increment": true},
-      "name": {"type": "varchar(100)", "nullable": "NO", "auto_increment": false},
-      "role": {"type": "varchar(100)", "nullable": "NO", "auto_increment": false},
-      "subject": {"type": "varchar(100)", "nullable": "YES", "auto_increment": false},
-      "image_url": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "sort_order": {"type": "int", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":true},
+      "name": {"type":"varchar(100)","nullable":"NO","auto_increment":false},
+      "role": {"type":"varchar(100)","nullable":"NO","auto_increment":false},
+      "subject": {"type":"varchar(100)","nullable":"YES","auto_increment":false},
+      "id_file_manager": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false},
+      "sort_order": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
   "testimonials": {
     "columns": {
-      "id": {"type": "int", "nullable": "NO", "auto_increment": true},
-      "parent_name": {"type": "varchar(100)", "nullable": "NO", "auto_increment": false},
-      "quote": {"type": "text", "nullable": "NO", "auto_increment": false},
-      "image_url": {"type": "varchar(255)", "nullable": "YES", "auto_increment": false},
-      "sort_order": {"type": "int", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int","nullable":"NO","auto_increment":true},
+      "parent_name": {"type":"varchar(100)","nullable":"NO","auto_increment":false},
+      "quote": {"type":"text","nullable":"NO","auto_increment":false},
+      "id_file_manager": {"type":"int UNSIGNED","nullable":"YES","auto_increment":false},
+      "sort_order": {"type":"int","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
   "videos": {
     "columns": {
-      "id": {"type": "int", "nullable": "NO", "auto_increment": true},
-      "youtube_id": {"type": "varchar(50)", "nullable": "NO", "auto_increment": false},
-      "title": {"type": "varchar(255)", "nullable": "NO", "auto_increment": false},
-      "student_name": {"type": "varchar(100)", "nullable": "NO", "auto_increment": false},
-      "sort_order": {"type": "int", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int","nullable":"NO","auto_increment":true},
+      "youtube_id": {"type":"varchar(50)","nullable":"NO","auto_increment":false},
+      "title": {"type":"varchar(255)","nullable":"NO","auto_increment":false},
+      "student_name": {"type":"varchar(100)","nullable":"NO","auto_increment":false},
+      "sort_order": {"type":"int","nullable":"YES","auto_increment":false}
     },
     "unique_keys": [["id"]]
   },
   "web_settings": {
     "columns": {
-      "id": {"type": "int unsigned", "nullable": "NO", "auto_increment": true},
-      "setting_key": {"type": "varchar(50)", "nullable": "NO", "auto_increment": false},
-      "setting_value": {"type": "text", "nullable": "YES", "auto_increment": false},
-      "description": {"type": "varchar(255)", "nullable": "YES", "auto_increment": false},
-      "updated_at": {"type": "timestamp", "nullable": "YES", "auto_increment": false}
+      "id": {"type":"int UNSIGNED","nullable":"NO","auto_increment":true},
+      "setting_key": {"type":"enum('site_title','site_description','site_theme_color','base_url','contact_phone','contact_whatsapp','contact_email','contact_address','contact_map_url','school_hours','social_instagram','social_facebook','social_blog','social_youtube','social_tiktok','stat_alumni','stat_students','stat_teachers','stat_achievements','kepsek_name','kepsek_title','kepsek_quote','ppdb_registration_fee','ppdb_monthly_spp')","nullable":"NO","auto_increment":false},
+      "setting_value": {"type":"text","nullable":"YES","auto_increment":false},
+      "description": {"type":"varchar(255)","nullable":"YES","auto_increment":false},
+      "updated_at": {"type":"timestamp","nullable":"YES","auto_increment":false}
     },
-    "unique_keys": [["id"], ["setting_key"]]
+    "unique_keys": [["id"],["setting_key"]]
   }
 }
 JSON
@@ -265,23 +300,35 @@ JSON
         }
     }
 
-    // Periksa relasi beserta ON DELETE CASCADE, tanpa bergantung pada nama constraint.
+    // Periksa relasi beserta aturan DELETE/UPDATE, tanpa bergantung pada nama constraint.
     $relations = [];
     $result = $db->query("SELECT k.TABLE_NAME, k.COLUMN_NAME, k.REFERENCED_TABLE_NAME,
-            k.REFERENCED_COLUMN_NAME, r.DELETE_RULE
+            k.REFERENCED_COLUMN_NAME, r.DELETE_RULE, r.UPDATE_RULE
         FROM information_schema.KEY_COLUMN_USAGE k
         JOIN information_schema.REFERENTIAL_CONSTRAINTS r
           ON r.CONSTRAINT_SCHEMA = k.CONSTRAINT_SCHEMA
          AND r.CONSTRAINT_NAME = k.CONSTRAINT_NAME AND r.TABLE_NAME = k.TABLE_NAME
         WHERE k.TABLE_SCHEMA = DATABASE() AND k.REFERENCED_TABLE_SCHEMA = DATABASE()");
     while ($row = $result->fetch_assoc()) {
+        // MySQL memperlakukan NO ACTION sama dengan RESTRICT.
+        foreach (['DELETE_RULE', 'UPDATE_RULE'] as $rule) {
+            if ($row[$rule] === 'NO ACTION') $row[$rule] = 'RESTRICT';
+        }
         $relations[] = implode('|', array_values($row));
     }
-    foreach ([
-        'article_contents|article_id|articles|id|CASCADE',
-        'article_tag_map|article_id|articles|id|CASCADE',
-        'article_tag_map|tag_id|tags|id|CASCADE',
-    ] as $relation) {
+    $expectedRelations = [
+        'articles|id_file_manager|file_manager|id_file_manager|SET NULL|RESTRICT',
+        'article_contents|article_id|articles|id|CASCADE|RESTRICT',
+        'article_contents|id_file_manager|file_manager|id_file_manager|SET NULL|RESTRICT',
+        'article_tag_map|article_id|articles|id|CASCADE|RESTRICT',
+        'article_tag_map|tag_id|tags|id|CASCADE|RESTRICT',
+        'facilities|id_file_manager|file_manager|id_file_manager|SET NULL|RESTRICT',
+        'galleries|id_file_manager|file_manager|id_file_manager|SET NULL|RESTRICT',
+        'hero_slides|id_file_manager|file_manager|id_file_manager|SET NULL|RESTRICT',
+        'teachers|id_file_manager|file_manager|id_file_manager|SET NULL|RESTRICT',
+        'testimonials|id_file_manager|file_manager|id_file_manager|SET NULL|RESTRICT',
+    ];
+    foreach ($expectedRelations as $relation) {
         if (!in_array($relation, $relations, true)) {
             $errors[] = "Foreign key tidak sesuai: $relation";
         }
@@ -293,7 +340,8 @@ JSON
         }
         exit(1);
     }
-    echo "LOLOS: Struktur 14 tabel, kolom wajib, primary/unique key, dan 3 relasi sesuai.\n";
+    echo "LOLOS: Struktur " . count($expected) . " tabel, kolom wajib, primary/unique key, dan "
+        . count($expectedRelations) . " relasi sesuai DB/web_sekolah.sql.\n";
     exit(0);
 } catch (Throwable $error) {
     // Jangan cetak pesan SQL mentah: dapat memuat konfigurasi atau data sensitif.
