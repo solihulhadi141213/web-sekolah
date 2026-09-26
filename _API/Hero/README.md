@@ -5,7 +5,7 @@ Mengikuti pola Fasilitas/Galleries, menggunakan tabel `hero_slides` dan `file_ma
 | Endpoint | Method | Fungsi |
 | --- | --- | --- |
 | `get_hero.php` | GET | Daftar, pencarian, pagination, filter status, metadata gambar |
-| `add_hero.php` | POST | Tambah slide dengan atau tanpa gambar |
+| `add_hero.php` | POST | Tambah slide dengan gambar wajib |
 | `update_hero.php` | PUT | Ubah judul, subjudul, dan status aktif |
 | `delete_hero.php?id=1` | DELETE | Hapus slide dan tangani gambar terkait |
 | `update_image.php` | PUT | Ganti atau lepas gambar |
@@ -15,15 +15,9 @@ Mengikuti pola Fasilitas/Galleries, menggunakan tabel `hero_slides` dan `file_ma
 
 `title` wajib berupa teks tidak kosong, maksimal 100 karakter; `subtitle` wajib berupa teks tidak kosong, maksimal 255 karakter. `is_active` opsional, berupa integer 0 atau 1, default 1. Boolean, string, null, dan nilai lainnya ditolak. Urutan otomatis terbesar + 1, dimulai dari 1 jika tabel kosong.
 
-```json
-{
-  "title": "KEDISIPLINAN",
-  "subtitle": "Membangun karakter melalui kebiasaan baik setiap hari.",
-  "is_active": 1
-}
-```
+Gambar wajib disertakan, termasuk untuk slide nonaktif. Kirim `file_source` dan `base64` untuk unggahan, atau `image_url` untuk External Link. Field gambar yang hilang, null, bukan string, atau kosong ditolak dengan HTTP 400 tanpa menyimpan data.
 
-Untuk menyertakan gambar, tambahkan `file_source` dan `base64`:
+Contoh request:
 
 ```json
 {

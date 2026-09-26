@@ -2,7 +2,7 @@
 // php tests/hero_test.php: temporary tables and test-owned files; providers mocked.
 if (PHP_SAPI !== 'cli') { http_response_code(404); exit; }
 if (!isset($argv[1])) {
-    $cases = ['add_inactive','add_bad_active','add_null_active','add_missing_title','add_missing_subtitle','add_none','add_local','add_cloud','add_imagekit','add_external','add_disabled','add_pdf','add_long_title','add_long_subtitle','add_255_subtitle','add_rollback',
+    $cases = ['add_inactive','add_bad_active','add_null_active','add_missing_title','add_missing_subtitle','add_none','add_empty_source','add_missing_image','add_empty_image','add_null_image','add_missing_url','add_empty_url','add_local','add_cloud','add_imagekit','add_external','add_disabled','add_pdf','add_long_title','add_long_subtitle','add_255_subtitle','add_rollback',
         'get_active','get_inactive','get_active_search','get_bad_active','get_all','get_page','get_search','get_literal','get_order','get_empty','get_invalid',
         'update_inactive','update_bad_active','update_preserve_inactive','update','update_same','update_missing','update_protected','update_long','update_bad_id',
         'sort_up','sort_down','sort_first','sort_last','sort_zero','sort_gap','sort_duplicate','sort_missing','sort_rollback',
@@ -98,12 +98,23 @@ $expected=$kind==='add' ? 201 : 200;
 $payload=['title'=>'New hero','subtitle'=>'New subtitle'];
 $_GET=[];
 if ($kind==='add') {
+    if ($case==='add_none') { $expected=400; }
+    if ($case==='add_empty_source') { $payload['file_source']=''; $expected=400; }
+    if (in_array($case,['add_missing_image','add_empty_image','add_null_image'],true)) {
+        $payload['file_source']='Local Directory'; $expected=400;
+        if ($case==='add_empty_image') $payload['base64']='  ';
+        if ($case==='add_null_image') $payload['base64']=null;
+    }
+    if (in_array($case,['add_missing_url','add_empty_url'],true)) {
+        $payload['file_source']='External Link'; $expected=400;
+        if ($case==='add_empty_url') $payload['image_url']='  ';
+    }
     if ($case==='add_inactive') { $payload['is_active']=0; }
     if ($case==='add_bad_active') { $payload['is_active']='1'; $expected=400; }
     if ($case==='add_null_active') { $payload['is_active']=null; $expected=400; }
     if ($case==='add_missing_title') { unset($payload['title']); $expected=400; }
     if ($case==='add_missing_subtitle') { unset($payload['subtitle']); $expected=400; }
-    if (in_array($case,['add_local','add_cloud','add_imagekit','add_external','add_disabled','add_pdf','add_rollback'],true)) {
+    if (in_array($case,['add_inactive','add_255_subtitle','add_local','add_cloud','add_imagekit','add_external','add_disabled','add_pdf','add_rollback'],true)) {
         $payload['file_source']=$case==='add_cloud' ? 'Cloudinary' : ($case==='add_imagekit' || $case==='add_disabled' ? 'Imagekit' : 'Local Directory');
         $payload['base64']=base64_encode($png);
     }

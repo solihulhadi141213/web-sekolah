@@ -71,14 +71,14 @@ try {
         throw new RuntimeException('Is_active harus berupa integer 0 atau 1.', 400);
     }
     $fields['is_active'] = $input->is_active ?? 1;
-    $source = null;
-    if (property_exists($input, 'file_source')) {
-        if (!is_string($input->file_source) || !in_array($input->file_source, ['Local Directory', 'External Link', 'Cloudinary', 'Imagekit'], true)) {
-            throw new RuntimeException('File_source harus Local Directory, External Link, Cloudinary, atau Imagekit.', 400);
-        }
-        $source = $input->file_source;
-    } elseif (property_exists($input, 'base64') || property_exists($input, 'image_url') || property_exists($input, 'image_base64')) {
-        throw new RuntimeException('File_source wajib disertakan jika mengirim gambar.', 400);
+    if (!isset($input->file_source) || !is_string($input->file_source)
+        || !in_array($input->file_source, ['Local Directory', 'External Link', 'Cloudinary', 'Imagekit'], true)) {
+        throw new RuntimeException('Gambar wajib disertakan. File_source harus Local Directory, External Link, Cloudinary, atau Imagekit.', 400);
+    }
+    $source = $input->file_source;
+    $imageField = $source === 'External Link' ? 'image_url' : 'base64';
+    if (!isset($input->$imageField) || !is_string($input->$imageField) || trim($input->$imageField) === '') {
+        throw new RuntimeException('Gambar wajib disertakan. ' . $imageField . ' harus berupa teks yang tidak kosong.', 400);
     }
 
     // Persiapkan query sebelum mengunggah untuk mendeteksi struktur DB yang tidak sesuai.
@@ -87,20 +87,17 @@ try {
         VALUES (:title, :subtitle, :is_active, :id_file_manager, :sort_order)');
     $fileInsert = $pdo->prepare('INSERT INTO file_manager (file_source, file_metadata, creat_at)
         VALUES (:file_source, :file_metadata, UTC_TIMESTAMP())');
-    $metadata = $source === null ? null : $storage->store($source, $input);
+    $metadata = $storage->store($source, $input);
     unset($input);
 
     // Upload dilakukan sebelum transaksi agar tidak menahan kunci DB selama akses jaringan.
     $pdo->beginTransaction();
     $safeToDelete = false;
-    $fileId = null;
-    if ($metadata !== null) {
-        $fileInsert->execute([
-            'file_source' => $source,
-            'file_metadata' => json_encode($metadata, JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR),
-        ]);
-        $fileId = (int) $pdo->lastInsertId();
-    }
+    $fileInsert->execute([
+        'file_source' => $source,
+        'file_metadata' => json_encode($metadata, JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR),
+    ]);
+    $fileId = (int) $pdo->lastInsertId();
     $sortOrder = (int) $pdo->query('SELECT COALESCE(MAX(sort_order), 0) + 1 FROM hero_slides')->fetchColumn();
     $heroInsert->execute($fields + ['id_file_manager' => $fileId, 'sort_order' => $sortOrder]);
     $id = (int) $pdo->lastInsertId();
