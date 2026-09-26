@@ -59,6 +59,24 @@
     require __DIR__ . '/_Helper/CacheHeaders.php';
     require __DIR__ . '/_Partial/RoutingPage.php';
 
+    // Catat page view sebelum validasi ETag: respons 304 juga merupakan kunjungan.
+    // HEAD/POST, maintenance, rate limit, dan route error tidak dihitung.
+    if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET' && $status === 200) {
+        require_once __DIR__ . '/_Helper/Database.php';
+        require_once __DIR__ . '/_Helper/WebsiteHits.php';
+        // Cookie pengunjung tidak boleh dibagikan melalui cache bersama.
+        if (!$isDevelopment) header('Cache-Control: private, no-cache');
+        try {
+            WebsiteHits::record(
+                Database::getConnection(), $_SERVER, $_COOKIE,
+                $pageUrl($route), $pageTitle, $siteUrl()
+            );
+        } catch (Throwable $error) {
+            // Statistik tidak boleh memutus akses halaman atau mengekspos data pengunjung.
+            error_log('WebsiteHits: pencatatan gagal (' . get_class($error) . ').');
+        }
+    }
+
     // Pada production, bandingkan isi HTML dengan cache milik browser.
     if (!$isDevelopment && http_response_code() === 200) {
         ob_start(static function ($html) {

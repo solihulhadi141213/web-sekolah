@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 20, 2026 at 08:10 PM
+-- Generation Time: Sep 26, 2026 at 07:45 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.2.26
 
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `api_credentials` (
   `api_key` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT 'Kunci publik unik untuk identifikasi klien (Header: x-api-key)',
   `api_secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT 'Kunci rahasia (di-hash) untuk validasi otentikasi ketat',
   `is_active` tinyint(1) DEFAULT '1' COMMENT 'Saklar (Toggle) untuk mematikan akses API sewaktu-waktu jika diperlukan',
-  `last_used_at` timestamp NULL DEFAULT NULL COMMENT 'Mencatat waktu terakhir klien melakukan request ke API',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Waktu kredensial ini diterbitkan',
+  `last_used_at` timestamp NULL DEFAULT NULL COMMENT 'Mencatat waktu terakhir klien melakukan request ke API (UTC)',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Waktu kredensial ini diterbitkan (UTC)',
   PRIMARY KEY (`id`),
   UNIQUE KEY `api_key` (`api_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabel otorisasi klien untuk mengakses endpoint API web';
@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `summary` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Teks singkat untuk tampilan landing page (preview)',
   `id_file_manager` int UNSIGNED DEFAULT NULL COMMENT 'Gambar sampul artikel',
   `status` enum('published','draft') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'published' COMMENT 'Status artikel di publis atau tidak',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'UTC',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'UTC',
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
   KEY `articles_to_file_manager` (`id_file_manager`)
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `rate_limit` (
   `endpoint` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `request_time` int UNSIGNED NOT NULL,
   `hit_count` smallint UNSIGNED NOT NULL DEFAULT '1',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'UTC',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_rate_limit` (`ip_address`,`endpoint`,`request_time`),
   KEY `idx_cleanup` (`request_time`),
@@ -212,6 +212,7 @@ CREATE TABLE IF NOT EXISTS `siswa_baru` (
   `alamat_tinggal` text NOT NULL,
   `nama_wali` varchar(255) NOT NULL,
   `kontak_wali` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `creat_at` datetime NOT NULL COMMENT 'UTC',
   PRIMARY KEY (`id_siswa_baru`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -301,6 +302,31 @@ CREATE TABLE IF NOT EXISTS `videos` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `website_hits`
+--
+
+DROP TABLE IF EXISTS `website_hits`;
+CREATE TABLE IF NOT EXISTS `website_hits` (
+  `id_hit` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `visitor_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `session_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page_path` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referrer_url` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip_address` varbinary(16) DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `is_bot` tinyint UNSIGNED NOT NULL DEFAULT '0',
+  `visited_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_hit`),
+  KEY `idx_visited_at` (`visited_at`),
+  KEY `idx_visitor_time` (`visitor_id`,`visited_at`),
+  KEY `idx_session_time` (`session_id`,`visited_at`),
+  KEY `idx_page_time` (`page_path`(191),`visited_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `web_settings`
 --
 
@@ -310,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `web_settings` (
   `setting_key` enum('site_title','site_description','site_theme_color','base_url','contact_phone','contact_whatsapp','contact_email','contact_address','contact_map_url','school_hours','social_instagram','social_facebook','social_blog','social_youtube','social_tiktok','stat_alumni','stat_students','stat_teachers','stat_achievements','kepsek_name','kepsek_title','kepsek_quote','ppdb_registration_fee','ppdb_monthly_spp') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `setting_value` text,
   `description` varchar(255) DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'UTC',
   PRIMARY KEY (`id`),
   UNIQUE KEY `setting_key` (`setting_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
