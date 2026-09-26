@@ -1,4 +1,4 @@
-<section id="home" class="hero-section reveal">
+<section id="home" class="hero-section reveal section-warm">
     <div class="container">
     <div class="hero-layout">
         <div class="hero-copy reveal">
@@ -28,7 +28,7 @@
     </div>
 </section>
 
-<section id="statistics" class="statistics-section section-soft reveal">
+<section id="statistics" class="statistics-section reveal section-soft">
     <div class="container">
     <div class="section-heading text-center mb-5">
         <span class="eyebrow">Statistik</span>
@@ -43,7 +43,7 @@
     </div>
 </section>
 
-<section id="leadership" class="section reveal">
+<section id="leadership" class="section reveal section-warm">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Selayang Pandang</span>
@@ -81,7 +81,7 @@
     </div>
 </section>
 
-<section id="profile" class="section section-soft reveal">
+<section id="profile" class="section reveal section-soft">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Profil Sekolah</span>
@@ -139,7 +139,7 @@
     </div>
 </section>
 
-<section id="teachers" class="section reveal">
+<section id="teachers" class="section reveal section-warm">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Guru & Tenaga Pendidikan</span>
@@ -243,7 +243,7 @@
     </div>
 </section>
 
-<section id="academic" class="section section-soft reveal">
+<section id="academic" class="section reveal section-soft">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Testimonial</span>
@@ -340,7 +340,7 @@
     </div>
 </section>
 
-<section id="student" class="section reveal">
+<section id="student" class="section reveal section-warm">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Kesiswaan</span>
@@ -417,7 +417,7 @@
     </div>
 </section>
 
-<section id="facility" class="section section-soft reveal">
+<section id="facility" class="section reveal section-soft">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Fasilitas</span>
@@ -496,7 +496,7 @@
     </div>
 </section>
 
-<section id="news" class="section reveal">
+<section id="news" class="section reveal section-warm">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Berita & Pengumuman</span>
@@ -587,7 +587,7 @@
     </div>
 </section>
 
-<section id="gallery" class="section section-soft reveal">
+<section id="gallery" class="section reveal section-soft">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Galeri</span>
@@ -618,18 +618,14 @@
     </div>
 </section>
 
-<section id="admission" class="section reveal">
+<section id="admission" class="section reveal section-warm">
     <div class="container">
-    <div class="section-heading text-center mb-5 reveal">
-        <span class="eyebrow">Penerimaan Murid Baru</span>
-        <h2>Masuk sekolah dengan proses yang jelas dan ramah</h2>
-    </div>
-    <div class="row g-4 align-items-stretch">
-        <div class="col-lg-12 reveal">
+        <div class="section-heading text-center mb-5">
+            <span class="eyebrow">Penerimaan Murid Baru</span>
+            <h2 id="admissionHeading">Masuk sekolah dengan proses yang jelas dan ramah</h2>
+        </div>
         <div class="admission-box">
-            <div class="row g-4">
-            <div class="col-md-6">
-                <div class="admission-stat">
+            <div class="admission-content" role="region" aria-label="Informasi pendaftaran murid baru" tabindex="0">
                 <h3>Persyaratan</h3>
                 <ul>
                     <li>Fotokopi Akta Kelahiran</li>
@@ -637,10 +633,7 @@
                     <li>Pas foto terbaru</li>
                     <li>Surat keterangan sehat</li>
                 </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="admission-stat">
+
                 <h3>Jadwal</h3>
                 <ul>
                     <li>Gelombang 1: 1 - 15 Juli</li>
@@ -648,10 +641,7 @@
                     <li>Seleksi: 2 - 5 Agustus</li>
                     <li>Pengumuman: 7 Agustus</li>
                 </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="admission-stat">
+
                 <h3>Alur</h3>
                 <ul>
                     <li>Daftar online</li>
@@ -659,25 +649,35 @@
                     <li>Wawancara & tes singkat</li>
                     <li>Daftar ulang</li>
                 </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="admission-stat">
+
                 <h3>Biaya</h3>
                 <ul>
                     <li>Biaya pendaftaran: Rp 250.000</li>
                     <li>SPP bulan pertama: Rp 350.000</li>
                     <li>Seragam & perlengkapan: terpisah</li>
                 </ul>
-                </div>
-            </div>
             </div>
         </div>
+        <div class="text-center mt-4">
+            <a class="teacher-more-button" href="/pendaftaran-siswa">
+                <span>Daftar Sekarang</span>
+                <span class="teacher-more-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14m-6-6 6 6-6 6" />
+                    </svg>
+                </span>
+            </a>
         </div>
-        <div class="col-lg-12 reveal">
+    </div>
+</section>
+
+<section id="faq" class="section reveal section-soft">
+    <div class="container">
+        <div class="section-heading text-center mb-5">
+            <span class="eyebrow">FAQ</span>
+            <h2>Pertanyaan yang sering diajukan</h2>
+        </div>
         <div class="faq-box">
-            <!-- <a class="btn btn-primary rounded-pill mb-4" href="tel:+62232878112">Hubungi panitia PPDB</a> -->
-            <h3>FAQ</h3>
             <div class="accordion" id="admissionFaq">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -781,12 +781,10 @@
             </div>
             </div>
         </div>
-        </div>
-    </div>
     </div>
 </section>
 
-<section id="videos" class="section video-section reveal">
+<section id="videos" class="section video-section reveal section-warm">
     <div class="container">
     <div class="section-heading text-center mb-5">
         <span class="eyebrow">Galeri Video</span>
@@ -864,7 +862,7 @@
     </div>
 </section>
 
-<section id="contact" class="section section-soft reveal">
+<section id="contact" class="section reveal section-soft">
     <div class="container">
     <div class="section-heading text-center mb-5 reveal">
         <span class="eyebrow">Kontak & Alamat</span>

@@ -34,6 +34,7 @@
         <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#news' : $siteUrl('index.php#news')) ?>">Berita</a></li>
         <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#gallery' : $siteUrl('index.php#gallery')) ?>">Galeri</a></li>
         <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#admission' : $siteUrl('index.php#admission')) ?>">PPDB</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#faq' : $siteUrl('index.php#faq')) ?>">FAQ</a></li>
         <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#contact' : $siteUrl('index.php#contact')) ?>">Kontak</a></li>
         <!-- <li class="nav-item ms-xl-1">
             <a class="btn btn-primary btn-sm rounded-pill px-3" href="<?= $escape($route === 'Beranda' ? '#admission' : $siteUrl('index.php#admission')) ?>">Daftar Sekarang</a>
@@ -60,6 +61,7 @@
             <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#news' : $siteUrl('index.php#news')) ?>">Berita</a></li>
             <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#gallery' : $siteUrl('index.php#gallery')) ?>">Galeri</a></li>
             <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#admission' : $siteUrl('index.php#admission')) ?>">PPDB</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#faq' : $siteUrl('index.php#faq')) ?>">FAQ</a></li>
             <li class="nav-item"><a class="nav-link" href="<?= $escape($route === 'Beranda' ? '#contact' : $siteUrl('index.php#contact')) ?>">Kontak</a></li>
         </ul>
     </div>
